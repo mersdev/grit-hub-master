@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Button states</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:#fff;font-family:var(--font-sans);color:#000;}
+  body{padding:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:center;}
+  .col{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+  .label{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);}
+  .btn{font:700 13px/1 var(--font-sans);padding:10px 16px;border:0;border-radius:4px;background:var(--dhl-red);color:#fff;}
+  .hover{background:#BD0510;}
+  .pressed{background:#A30410;}
+  .focus{box-shadow:0 0 0 3px rgba(212,5,17,.35);}
+  .disabled{opacity:.4;}
+</style></head><body>
+<div class="col"><span class="label">Default</span><button class="btn">Track</button></div>
+<div class="col"><span class="label">Hover</span><button class="btn hover">Track</button></div>
+<div class="col"><span class="label">Pressed</span><button class="btn pressed">Track</button></div>
+<div class="col"><span class="label">Focus</span><button class="btn focus">Track</button></div>
+<div class="col"><span class="label">Disabled</span><button class="btn disabled">Track</button></div>
+</body></html>

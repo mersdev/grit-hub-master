@@ -1,0 +1,290 @@
+// scripts/html-to-pptx.mjs
+// Capture each slide of a deck-stage deck as EDITABLE PowerPoint.
+//
+// Walks the DOM, extracts text runs, images, and solid colored regions, then
+// emits native pptxgenjs text boxes / shapes / images so every word stays
+// editable in PowerPoint. Layout is best-effort — large or complex SVG
+// decorations may not survive perfectly. For pixel-perfect (but flat / image)
+// output, see html-to-pptx-screenshots.mjs.
+//
+// Usage:
+//   node scripts/html-to-pptx.mjs <url> [outPath]
+//   node scripts/html-to-pptx.mjs http://localhost:3000/slides/index.html out/deck.pptx
+
+import { chromium } from "playwright";
+import PptxGenJS from "pptxgenjs";
+import { mkdirSync, readFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const SKILL_ROOT = join(__dirname, "..");
+
+const [, , urlArg, outArg] = process.argv;
+const url = urlArg || "http://localhost:3000/slides/index.html";
+const out = outArg || "out/deck.pptx";
+
+mkdirSync(dirname(out), { recursive: true });
+
+// --- pixel → inch conversion (1920×1080 → 13.333"×7.5") ---
+const SLIDE_W_PX = 1920;
+const SLIDE_H_PX = 1080;
+const SLIDE_W_IN = 13.333;
+const SLIDE_H_IN = 7.5;
+const pxToInX = (px) => (px / SLIDE_W_PX) * SLIDE_W_IN;
+const pxToInY = (px) => (px / SLIDE_H_PX) * SLIDE_H_IN;
+// PowerPoint text autofits roughly to pt; CSS px → pt = px * 0.75
+const pxToPt = (px) => Math.max(6, Math.round(px * 0.75));
+
+// CSS rgb(...) / rgba(...) → "RRGGBB"
+function cssColorToHex(c) {
+  if (!c) return null;
+  const m = c.match(/rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/i);
+  if (!m) return null;
+  const [, r, g, b] = m;
+  return [r, g, b].map((n) => (+n).toString(16).padStart(2, "0")).join("").toUpperCase();
+}
+function cssAlpha(c) {
+  const m = c && c.match(/rgba\(\s*\d+[,\s]+\d+[,\s]+\d+[,\s]+([\d.]+)/i);
+  return m ? parseFloat(m[1]) : 1;
+}
+
+// ---- 1. Boot browser & load deck ----
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: SLIDE_W_PX, height: SLIDE_H_PX } });
+
+console.log(`→ Loading ${url}`);
+await page.goto(url, { waitUntil: "networkidle", timeout: 30_000 });
+await page.waitForTimeout(800);
+
+// Force deck-stage to drop its scale transform so getBoundingClientRect returns native px.
+await page.evaluate(() => {
+  const s = document.querySelector("deck-stage");
+  if (s) s.setAttribute("noscale", "");
+});
+await page.waitForTimeout(300);
+
+const slideCount = await page.evaluate(
+  () => document.querySelectorAll("deck-stage > section").length
+);
+console.log(`→ ${slideCount} slide(s)`);
+
+// Pull speaker notes once.
+const notes = await page.evaluate(() => {
+  try {
+    const t = document.querySelector("script#speaker-notes");
+    return t ? JSON.parse(t.textContent) : [];
+  } catch { return []; }
+});
+
+// ---- 2. The page-side DOM walker ----
+//
+// For each slide we collect:
+//   - bg blocks      : full-cover solid color rectangles (the section bg + any
+//                      absolutely-positioned full-cover div with a solid bg)
+//   - color blocks   : other rectangular elements with a solid bg color
+//   - images         : <img> src + rect
+//   - text runs      : every visible text node, with rect + font props
+//
+// We deliberately skip <svg> decorations (chevrons etc) — they don't survive
+// the round-trip cleanly. They print fine in screenshot mode.
+
+const walkerFn = `
+function collectSlide(section) {
+  const sRect = section.getBoundingClientRect();
+  const ox = sRect.left, oy = sRect.top;
+
+  const out = { bg: null, blocks: [], images: [], texts: [] };
+
+  // Section background
+  const sStyle = getComputedStyle(section);
+  const sBg = sStyle.backgroundColor;
+  if (sBg && !sBg.includes("rgba(0, 0, 0, 0)") && sBg !== "transparent") {
+    out.bg = sBg;
+  }
+
+  const walker = document.createTreeWalker(section, NodeFilter.SHOW_ELEMENT);
+  let node = walker.currentNode;
+  // First node is the section itself; skip.
+  node = walker.nextNode();
+  while (node) {
+    if (node.tagName === "SCRIPT" || node.tagName === "STYLE") {
+      node = walker.nextNode();
+      continue;
+    }
+    const r = node.getBoundingClientRect();
+    if (r.width < 1 || r.height < 1) { node = walker.nextNode(); continue; }
+    const cs = getComputedStyle(node);
+    if (cs.visibility === "hidden" || cs.display === "none" || cs.opacity === "0") {
+      node = walker.nextNode(); continue;
+    }
+    const x = r.left - ox, y = r.top - oy;
+
+    // Full-cover solid color → section background override
+    const bg = cs.backgroundColor;
+    const hasSolidBg = bg && !bg.includes("rgba(0, 0, 0, 0)") && bg !== "transparent";
+    const isFullCover = x <= 1 && y <= 1 && r.width >= sRect.width - 2 && r.height >= sRect.height - 2;
+    if (hasSolidBg && isFullCover && !node.querySelector("img")) {
+      // First full-cover block wins as the bg.
+      out.bg = bg;
+    } else if (hasSolidBg && !node.querySelector("img") && node.tagName !== "BODY") {
+      out.blocks.push({
+        x, y, w: r.width, h: r.height,
+        color: bg
+      });
+    }
+
+    // Images
+    if (node.tagName === "IMG") {
+      out.images.push({
+        x, y, w: r.width, h: r.height,
+        src: node.currentSrc || node.src,
+        opacity: parseFloat(cs.opacity) || 1
+      });
+    }
+
+    // Text — only direct text content (not text in descendants)
+    const directText = Array.from(node.childNodes)
+      .filter(n => n.nodeType === 3 && n.textContent.trim().length > 0)
+      .map(n => n.textContent.replace(/\\s+/g, " ").trim())
+      .join(" ")
+      .trim();
+    if (directText) {
+      out.texts.push({
+        x, y, w: r.width, h: r.height,
+        text: directText,
+        size: parseFloat(cs.fontSize),
+        weight: cs.fontWeight,
+        family: cs.fontFamily,
+        color: cs.color,
+        align: cs.textAlign,
+        italic: cs.fontStyle === "italic",
+        letterSpacing: cs.letterSpacing,
+        textTransform: cs.textTransform,
+        lineHeight: parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.2
+      });
+    }
+
+    node = walker.nextNode();
+  }
+  return out;
+}
+`;
+
+await page.addScriptTag({ content: walkerFn });
+
+// ---- 3. Helper: fetch an image (handles relative URLs) as base64 ----
+async function fetchImageAsDataUrl(srcUrl) {
+  try {
+    if (srcUrl.startsWith("data:")) return srcUrl;
+    const resp = await page.request.get(srcUrl);
+    if (!resp.ok()) return null;
+    const buf = await resp.body();
+    const type = resp.headers()["content-type"] || "image/png";
+    return `data:${type};base64,${buf.toString("base64")}`;
+  } catch (e) {
+    console.warn(`   ! Skipping image ${srcUrl}: ${e.message}`);
+    return null;
+  }
+}
+
+// ---- 4. Build PPTX ----
+const pptx = new PptxGenJS();
+pptx.defineLayout({ name: "DHL_HD", width: SLIDE_W_IN, height: SLIDE_H_IN });
+pptx.layout = "DHL_HD";
+pptx.title = "DHL Deck";
+
+for (let i = 0; i < slideCount; i++) {
+  // Navigate to slide i
+  await page.evaluate((n) => {
+    const stage = document.querySelector("deck-stage");
+    if (stage && typeof stage.goTo === "function") stage.goTo(n);
+  }, i);
+  await page.waitForTimeout(400);
+
+  // Collect that slide
+  const data = await page.evaluate(() => {
+    const sec = document.querySelectorAll("deck-stage > section")[
+      // eslint-disable-next-line no-undef
+      window.__currentIdx ?? 0
+    ];
+    // fall back to visible section
+    const target = sec || document.querySelector("deck-stage > section");
+    // eslint-disable-next-line no-undef
+    return collectSlide(target);
+  });
+  // The above can be unreliable; safer: pass index in.
+  const data2 = await page.evaluate((n) => {
+    const sec = document.querySelectorAll("deck-stage > section")[n];
+    // eslint-disable-next-line no-undef
+    return collectSlide(sec);
+  }, i);
+  const slideData = data2 || data;
+
+  const slide = pptx.addSlide();
+
+  // 4a. Background
+  const bgHex = cssColorToHex(slideData.bg) || "FFFFFF";
+  slide.background = { color: bgHex };
+
+  // 4b. Color blocks (solid rectangles)
+  for (const b of slideData.blocks) {
+    const hex = cssColorToHex(b.color);
+    if (!hex) continue;
+    const alpha = cssAlpha(b.color);
+    slide.addShape(pptx.ShapeType.rect, {
+      x: pxToInX(b.x), y: pxToInY(b.y),
+      w: pxToInX(b.w), h: pxToInY(b.h),
+      fill: { color: hex, transparency: Math.round((1 - alpha) * 100) },
+      line: { type: "none" }
+    });
+  }
+
+  // 4c. Images
+  for (const img of slideData.images) {
+    const dataUrl = await fetchImageAsDataUrl(img.src);
+    if (!dataUrl) continue;
+    slide.addImage({
+      data: dataUrl,
+      x: pxToInX(img.x), y: pxToInY(img.y),
+      w: pxToInX(img.w), h: pxToInY(img.h),
+      transparency: Math.round((1 - img.opacity) * 100)
+    });
+  }
+
+  // 4d. Text runs
+  for (const t of slideData.texts) {
+    const hex = cssColorToHex(t.color) || "000000";
+    const text = t.textTransform === "uppercase" ? t.text.toUpperCase() : t.text;
+    const fontFace = t.family.split(",")[0].replace(/["']/g, "").trim();
+    const weight = parseInt(t.weight, 10) || (t.weight === "bold" ? 700 : 400);
+
+    slide.addText(text, {
+      x: pxToInX(t.x),
+      y: pxToInY(t.y),
+      w: pxToInX(t.w),
+      h: pxToInY(t.h),
+      fontFace,
+      fontSize: pxToPt(t.size),
+      color: hex,
+      bold: weight >= 600,
+      italic: t.italic,
+      align: ["left", "center", "right"].includes(t.align) ? t.align : "left",
+      valign: "top",
+      margin: 0,
+      isTextBox: true,
+      autoFit: true
+    });
+  }
+
+  // 4e. Speaker notes
+  if (notes[i]) slide.addNotes(notes[i]);
+
+  console.log(`  · slide ${i + 1}/${slideCount}: ${slideData.texts.length} text, ${slideData.images.length} img, ${slideData.blocks.length} block`);
+}
+
+await pptx.writeFile({ fileName: out });
+await browser.close();
+console.log(`✓ Wrote ${out}`);
+console.log(`  All text is editable in PowerPoint.`);
+console.log(`  Note: SVG decorations (chevrons etc) are not exported. Use html-to-pptx-screenshots.mjs for pixel-perfect.`);

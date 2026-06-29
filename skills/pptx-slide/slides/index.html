@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DHL · Sample Slides</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  /* Deck overrides */
+  html, body { margin:0; background:#222; }
+  deck-stage { background:#222; }
+
+  /* --------- Shared slide chrome --------- */
+  section {
+    width:1920px; height:1080px;
+    position:relative;
+    background:#fff;
+    color:#000;
+    font-family: var(--font-sans);
+    overflow:hidden;
+  }
+  section .logo {
+    position:absolute; top:48px; left:64px;
+    width:180px; height:auto;
+    z-index:5;
+  }
+  section .pagebar {
+    position:absolute; left:64px; right:64px; bottom:34px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:18px; font-weight:400; color:rgba(0,0,0,.55);
+    letter-spacing:.02em;
+  }
+  section .signoff {
+    font-weight:700; color:var(--dhl-red);
+  }
+  section.dark .pagebar { color:rgba(255,255,255,.65); }
+  section.dark .signoff { color:#fff; }
+
+  /* Slide-specific styles handled inline in each section */
+</style>
+</head>
+<body>
+
+<script type="application/json" id="speaker-notes">
+[
+"Hi everyone. Welcome. Today I'm walking through how we're scaling next-day shipping across the next twelve markets. I'll keep this tight — call out at any point.",
+"Quick agenda. Three sections: where we are right now, what changes in Q3, and what the team needs from each region.",
+"This is the headline. We delivered ninety-eight point four percent on time across the network last quarter. That's the best on-time figure we've posted in five years. Take a moment with that.",
+"Here are the four service tracks side by side. Express is the flagship, eCommerce is the fastest growing line, Freight is the volume engine, Supply Chain is the long arc. Each one has its own roadmap from here.",
+"This is the headline statement for the section. We're moving from delivering parcels to delivering certainty. Everything we ship in the next six months ladders up to that.",
+"And to close — same line we always come back to. Excellence. Simply delivered. Thank you. Questions."
+]
+</script>
+
+<deck-stage>
+
+  <!-- 1. TITLE on Post Yellow -->
+  <section data-screen-label="01 Title">
+    <img class="logo" src="../assets/logos/DHL_Logo_rgb.svg" alt="DHL">
+    <div style="position:absolute;inset:0;background:var(--dhl-yellow);"></div>
+
+    <!-- Chevron decoration, bottom-right -->
+    <svg style="position:absolute;right:-60px;bottom:-40px;width:780px;height:780px;" viewBox="0 0 100 100">
+      <g fill="#D40511">
+        <path d="M0 30 L 25 0 L 45 0 L 20 30 L 45 60 L 25 60 Z" opacity=".35"/>
+        <path d="M22 30 L 47 0 L 67 0 L 42 30 L 67 60 L 47 60 Z" opacity=".7"/>
+        <path d="M44 30 L 69 0 L 89 0 L 64 30 L 89 60 L 69 60 Z"/>
+      </g>
+    </svg>
+
+    <div style="position:relative;z-index:2;padding:280px 64px 0 100px;max-width:1300px;">
+      <div style="font-size:24px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,0,0,.55);">Express · Internal Briefing</div>
+      <h1 style="font-family:var(--font-display);font-weight:900;font-size:160px;line-height:.92;letter-spacing:-.01em;margin:18px 0 28px;">
+        Scaling next-day,<br>twelve more markets.
+      </h1>
+      <div style="font-size:30px;font-weight:400;line-height:1.3;max-width:900px;color:rgba(0,0,0,.78);">
+        Network expansion plan · Q3 2026
+      </div>
+    </div>
+
+    <div style="position:absolute;bottom:48px;left:100px;display:flex;gap:48px;font-size:18px;font-weight:700;color:#000;">
+      <span>Maria Hartmann</span>
+      <span style="font-weight:400;opacity:.7;">Frankfurt · 14 May 2026</span>
+    </div>
+  </section>
+
+  <!-- 2. AGENDA -->
+  <section data-screen-label="02 Agenda">
+    <img class="logo" src="../assets/logos/DHL_Logo_rgb.svg" alt="DHL">
+    <div style="padding:160px 100px 0 100px;">
+      <div style="font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);">Agenda</div>
+      <h2 style="font-family:var(--font-sans);font-weight:700;font-size:72px;line-height:1.05;margin:18px 0 80px;">Three sections, thirty minutes.</h2>
+
+      <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:34px;counter-reset:item;font-size:36px;">
+        <li style="display:grid;grid-template-columns:120px 1fr 140px;align-items:baseline;gap:24px;border-bottom:1px solid var(--dhl-gray-200);padding-bottom:24px;">
+          <span style="font-family:var(--font-display);font-weight:900;font-size:72px;color:var(--dhl-red);">01</span>
+          <span style="font-weight:700;">Where we are</span>
+          <span style="font-weight:400;color:var(--fg-muted);font-size:24px;">8 min</span>
+        </li>
+        <li style="display:grid;grid-template-columns:120px 1fr 140px;align-items:baseline;gap:24px;border-bottom:1px solid var(--dhl-gray-200);padding-bottom:24px;">
+          <span style="font-family:var(--font-display);font-weight:900;font-size:72px;color:var(--dhl-red);">02</span>
+          <span style="font-weight:700;">What changes in Q3</span>
+          <span style="font-weight:400;color:var(--fg-muted);font-size:24px;">14 min</span>
+        </li>
+        <li style="display:grid;grid-template-columns:120px 1fr 140px;align-items:baseline;gap:24px;border-bottom:1px solid var(--dhl-gray-200);padding-bottom:24px;">
+          <span style="font-family:var(--font-display);font-weight:900;font-size:72px;color:var(--dhl-red);">03</span>
+          <span style="font-weight:700;">What the team needs</span>
+          <span style="font-weight:400;color:var(--fg-muted);font-size:24px;">8 min</span>
+        </li>
+      </ol>
+    </div>
+    <div class="pagebar"><span>DHL · Express Internal Briefing · Frankfurt · May 2026</span><span>2</span></div>
+  </section>
+
+  <!-- 3. BIG STAT / Statement -->
+  <section data-screen-label="03 Big Stat">
+    <img class="logo" src="../assets/logos/DHL_Logo_white_rgb.svg" alt="DHL" style="filter:brightness(0) invert(1);">
+    <div style="position:absolute;inset:0;background:#000;"></div>
+
+    <!-- Yellow dynamic element behind number -->
+    <img src="../assets/dynamic-elements/freeform_05.svg" style="position:absolute;left:60px;top:380px;width:280px;opacity:.85;filter:hue-rotate(50deg) saturate(2) brightness(2);">
+
+    <div style="position:relative;padding:300px 100px 0;color:#fff;">
+      <div style="font-size:24px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dhl-yellow);">On-Time Performance</div>
+      <div style="font-family:var(--font-display);font-weight:900;font-size:340px;line-height:.95;letter-spacing:-.02em;color:var(--dhl-yellow);margin:14px 0 0;">
+        98.4<span style="font-size:160px;">%</span>
+      </div>
+      <div style="font-size:42px;font-weight:400;max-width:1100px;line-height:1.25;margin-top:22px;color:rgba(255,255,255,.85);">
+        Best on-time delivery figure in five years, network-wide, Q1 2026.
+      </div>
+    </div>
+
+    <div class="pagebar" style="color:rgba(255,255,255,.6);"><span>DHL · Express Internal Briefing · Frankfurt · May 2026</span><span>3</span></div>
+  </section>
+
+  <!-- 4. FOUR-COLUMN COMPARISON -->
+  <section data-screen-label="04 Comparison">
+    <img class="logo" src="../assets/logos/DHL_Logo_rgb.svg" alt="DHL">
+    <div style="padding:160px 100px 0;">
+      <div style="font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);">The four service lines</div>
+      <h2 style="font-family:var(--font-sans);font-weight:700;font-size:60px;line-height:1.05;margin:16px 0 50px;max-width:1500px;">Each track has its own roadmap from here.</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+        <!-- Express -->
+        <div style="background:var(--dhl-yellow);padding:36px 32px;min-height:480px;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:.06em;">EXPRESS</div>
+          <div style="margin-top:36px;font-family:var(--font-display);font-weight:900;font-size:96px;line-height:.9;">220<span style="font-size:48px;">+</span></div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">countries served</div>
+          <div style="margin-top:auto;font-size:18px;line-height:1.4;color:rgba(0,0,0,.78);">Flagship time-definite. Adding twelve markets in Q3.</div>
+        </div>
+        <!-- eCommerce -->
+        <div style="background:#fff;padding:36px 32px;min-height:480px;display:flex;flex-direction:column;border:1px solid var(--dhl-gray-200);">
+          <div style="font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:.06em;color:var(--dhl-red);">eCOMMERCE</div>
+          <div style="margin-top:36px;font-family:var(--font-display);font-weight:900;font-size:96px;line-height:.9;color:var(--dhl-red);">+34<span style="font-size:48px;">%</span></div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">YoY parcel volume</div>
+          <div style="margin-top:auto;font-size:18px;line-height:1.4;color:var(--fg-muted);">Fastest growing line. New lockers in five EU capitals.</div>
+        </div>
+        <!-- Freight -->
+        <div style="background:#fff;padding:36px 32px;min-height:480px;display:flex;flex-direction:column;border:1px solid var(--dhl-gray-200);">
+          <div style="font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:.06em;">FREIGHT</div>
+          <div style="margin-top:36px;font-family:var(--font-display);font-weight:900;font-size:96px;line-height:.9;">1.6<span style="font-size:48px;">M</span></div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">tonnes moved Q1</div>
+          <div style="margin-top:auto;font-size:18px;line-height:1.4;color:var(--fg-muted);">The volume engine. Steady, predictable, expanding rail.</div>
+        </div>
+        <!-- Supply Chain -->
+        <div style="background:#000;color:#fff;padding:36px 32px;min-height:480px;display:flex;flex-direction:column;">
+          <div style="font-family:var(--font-display);font-weight:900;font-size:24px;letter-spacing:.06em;color:var(--dhl-yellow);">SUPPLY CHAIN</div>
+          <div style="margin-top:36px;font-family:var(--font-display);font-weight:900;font-size:96px;line-height:.9;color:var(--dhl-yellow);">2,800</div>
+          <div style="font-size:20px;font-weight:700;margin-top:6px;">customer sites</div>
+          <div style="margin-top:auto;font-size:18px;line-height:1.4;color:rgba(255,255,255,.75);">The long arc. Embedded in our customers' operations.</div>
+        </div>
+      </div>
+    </div>
+    <div class="pagebar"><span>DHL · Express Internal Briefing · Frankfurt · May 2026</span><span>4</span></div>
+  </section>
+
+  <!-- 5. BIG QUOTE / Section divider with photo -->
+  <section data-screen-label="05 Big Quote" class="dark">
+    <img class="logo" src="../assets/logos/DHL_Logo_white_rgb.svg" alt="DHL" style="filter:brightness(0) invert(1);">
+
+    <!-- Full-bleed photo -->
+    <div style="position:absolute;inset:0;background:url('../assets/photography/coastal_road.jpeg') center/cover no-repeat;"></div>
+    <!-- Darken gradient -->
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.62) 35%,rgba(0,0,0,.25) 100%);"></div>
+
+    <div style="position:relative;color:#fff;padding:220px 100px 0;max-width:1500px;">
+      <div style="font-size:120px;line-height:.7;color:var(--dhl-yellow);font-family:var(--font-display);font-weight:900;margin-bottom:20px;">"</div>
+      <div style="font-family:var(--font-sans);font-weight:300;font-size:80px;line-height:1.08;letter-spacing:-.005em;">
+        We're moving from delivering parcels<br>to delivering <span style="font-weight:700;color:var(--dhl-yellow);">certainty</span>.
+      </div>
+      <div style="margin-top:60px;font-size:22px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;">— Maria Hartmann, COO Express EMEA</div>
+    </div>
+
+    <div class="pagebar" style="color:rgba(255,255,255,.65);"><span>DHL · Express Internal Briefing · Frankfurt · May 2026</span><span>5</span></div>
+  </section>
+
+  <!-- 6. CLOSING / SIGNOFF -->
+  <section data-screen-label="06 Closing">
+    <div style="position:absolute;inset:0;background:var(--dhl-yellow);"></div>
+
+    <!-- Big chevron mark -->
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:0;">
+      <svg width="160" height="380" viewBox="0 0 100 240" style="opacity:.35;"><path d="M0 0 L 60 0 L 100 120 L 60 240 L 0 240 L 40 120 Z" fill="#D40511"/></svg>
+      <svg width="160" height="380" viewBox="0 0 100 240" style="margin-left:-40px;opacity:.7;"><path d="M0 0 L 60 0 L 100 120 L 60 240 L 0 240 L 40 120 Z" fill="#D40511"/></svg>
+      <svg width="160" height="380" viewBox="0 0 100 240" style="margin-left:-40px;"><path d="M0 0 L 60 0 L 100 120 L 60 240 L 0 240 L 40 120 Z" fill="#D40511"/></svg>
+    </div>
+
+    <div style="position:relative;padding:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:0 100px 200px;">
+      <img src="../assets/logos/DHL_Logo_rgb.svg" alt="DHL" style="width:340px;margin-bottom:36px;">
+      <div style="font-family:var(--font-display);font-weight:900;font-size:140px;line-height:.96;letter-spacing:-.005em;color:#000;">
+        Excellence.<br>Simply delivered.
+      </div>
+    </div>
+
+    <div class="pagebar"><span>Thank you · Questions welcome</span><span>6</span></div>
+  </section>
+
+</deck-stage>
+
+<script src="../deck-stage.js"></script>
+</body>
+</html>

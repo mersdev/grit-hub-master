@@ -1,0 +1,18 @@
+{
+  "type": "state",
+  "title": "User Registration & Role Lifecycle",
+  "states": [
+    {"id": "Submitted", "label": "Submitted",  "color": "existing_no_change"},
+    {"id": "Pending",   "label": "Pending SuperAdmin", "color": "existing_to_change"},
+    {"id": "Approved",  "label": "Approved",   "color": "new_target_solution"},
+    {"id": "Rejected",  "label": "Rejected",   "color": "existing_decomm"}
+  ],
+  "transitions": [
+    {"source": "[*]",       "target": "Submitted"},
+    {"source": "Submitted", "target": "Pending",  "label": "auto-route"},
+    {"source": "Pending",   "target": "Approved", "label": "grant role"},
+    {"source": "Pending",   "target": "Rejected", "label": "deny"},
+    {"source": "Approved",  "target": "[*]"},
+    {"source": "Rejected",  "target": "[*]"}
+  ]
+}

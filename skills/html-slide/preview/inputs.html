@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Inputs</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:#fff;font-family:var(--font-sans);color:#000;}
+  body{padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  label{font-size:11px;font-weight:700;letter-spacing:.02em;}
+  .input{font:400 14px var(--font-sans);padding:10px 12px;border:1px solid var(--dhl-gray-300);border-radius:4px;background:#fff;color:#000;}
+  .input:focus{outline:none;border-color:#000;box-shadow:0 0 0 3px rgba(212,5,17,.25);}
+  .help{font-size:11px;color:var(--fg-muted);}
+  .err .input{border-color:var(--dhl-red);}
+  .err .help{color:var(--dhl-red);}
+  .disabled .input{background:var(--dhl-gray-100);color:var(--fg-subtle);}
+</style></head><body>
+<div class="field">
+  <label>Tracking number</label>
+  <input class="input" value="1234 5678 9012">
+  <span class="help">Format: 4 digits × 3 groups</span>
+</div>
+<div class="field err">
+  <label>Postal code</label>
+  <input class="input" value="ABCDE">
+  <span class="help">Use a valid postal code.</span>
+</div>
+<div class="field">
+  <label>Destination country</label>
+  <select class="input"><option>Germany</option><option>USA</option></select>
+  <span class="help">Used to calculate duties.</span>
+</div>
+<div class="field disabled">
+  <label>Account number</label>
+  <input class="input" value="—" disabled>
+  <span class="help">Sign in to attach an account.</span>
+</div>
+</body></html>

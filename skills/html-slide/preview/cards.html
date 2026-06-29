@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Cards</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--dhl-gray-100);font-family:var(--font-sans);color:#000;}
+  body{padding:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .card{background:#fff;border:1px solid var(--dhl-gray-200);padding:18px;display:flex;flex-direction:column;gap:8px;}
+  .card .icon{width:32px;height:32px;color:var(--dhl-red);}
+  .card h3{font-size:15px;font-weight:700;margin:0;}
+  .card p{font-size:12px;line-height:1.4;color:var(--fg-muted);margin:0;}
+  .card a{color:var(--dhl-red);font-weight:700;font-size:12px;margin-top:auto;text-decoration:none;}
+  .card.alt{background:var(--dhl-yellow);border-color:transparent;}
+  .card.alt .icon{color:#000;}
+  .card.alt p{color:rgba(0,0,0,.78);}
+  .card.alt a{color:#000;text-decoration:underline;}
+  svg{width:32px;height:32px;}
+</style></head><body>
+<div class="card">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+  <h3>Express Worldwide</h3>
+  <p>Door-to-door international shipping with end-of-day delivery.</p>
+  <a href="#">Learn more →</a>
+</div>
+<div class="card">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="15" height="10" rx="1"/><path d="M18 11h3l2 3v4h-5"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+  <h3>Same Day</h3>
+  <p>Urgent shipments picked up and delivered within hours.</p>
+  <a href="#">Learn more →</a>
+</div>
+<div class="card alt">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <h3>Find a Location</h3>
+  <p>20,000+ Service Points and lockers worldwide.</p>
+  <a href="#">Open map →</a>
+</div>
+</body></html>

@@ -1,0 +1,68 @@
+{
+  "_note": "Catalogue of every Mermaid diagram type this skill can produce. 'tier' = dhl_core (styled, builder-backed, DHL colour scheme) or plain (official syntax, no DHL styling). 'doc' is the bundled official syntax reference under references/mermaid-syntax/. Builder-backed core types should be generated with scripts/mermaid_builder.py + validated with scripts/validate_mermaid.py; plain types are hand-written from their doc.",
+  "core_types": {
+    "flowchart": {
+      "tier": "dhl_core", "builder": "FlowchartBuilder", "doc": "flowchart.md",
+      "use": "solution / integration / data-flow / migration / infra-zone architecture"
+    },
+    "sequence": {
+      "tier": "dhl_core", "builder": "SequenceBuilder", "doc": "sequenceDiagram.md",
+      "use": "request/response, API orchestration, multi-agent messaging"
+    },
+    "state": {
+      "tier": "dhl_core", "builder": "StateBuilder", "doc": "stateDiagram.md",
+      "use": "lifecycle/status machines, order/registration/role flows"
+    },
+    "er": {
+      "tier": "dhl_core", "builder": "ERBuilder", "doc": "entityRelationshipDiagram.md",
+      "use": "database schemas, data models"
+    },
+    "c4": {
+      "tier": "dhl_core", "builder": "C4Builder", "doc": "c4.md",
+      "use": "C4 system/container/component architecture"
+    }
+  },
+  "plain_types": {
+    "class":        {"tier": "plain", "doc": "classDiagram.md", "use": "OOP class structure, inheritance, associations"},
+    "gantt":        {"tier": "plain", "doc": "gantt.md", "use": "project planning, timelines, migration phasing"},
+    "pie":          {"tier": "plain", "doc": "pie.md", "use": "proportions, distributions"},
+    "mindmap":      {"tier": "plain", "doc": "mindmap.md", "use": "hierarchical structures, knowledge maps"},
+    "timeline":     {"tier": "plain", "doc": "timeline.md", "use": "historical events, milestones"},
+    "gitgraph":     {"tier": "plain", "doc": "gitgraph.md", "use": "branches, merges, release flow"},
+    "quadrant":     {"tier": "plain", "doc": "quadrantChart.md", "use": "four-quadrant analysis"},
+    "requirement":  {"tier": "plain", "doc": "requirementDiagram.md", "use": "requirements traceability"},
+    "sankey":       {"tier": "plain", "doc": "sankey.md", "use": "flows, conversions, volume routing"},
+    "xychart":      {"tier": "plain", "doc": "xyChart.md", "use": "line/bar charts"},
+    "block":        {"tier": "plain", "doc": "block.md", "use": "system components/modules (block layout)"},
+    "packet":       {"tier": "plain", "doc": "packet.md", "use": "network protocols, byte/data structures"},
+    "kanban":       {"tier": "plain", "doc": "kanban.md", "use": "task management, workflow boards"},
+    "architecture": {"tier": "plain", "doc": "architecture.md", "use": "cloud/service architecture (mermaid architecture-beta)"},
+    "radar":        {"tier": "plain", "doc": "radar.md", "use": "multi-dimensional comparison"},
+    "treemap":      {"tier": "plain", "doc": "treemap.md", "use": "hierarchical data visualization"},
+    "userjourney":  {"tier": "plain", "doc": "userJourney.md", "use": "user experience / journey mapping"},
+    "zenuml":       {"tier": "plain", "doc": "zenuml.md", "use": "sequence diagrams in code style"}
+  },
+  "config_docs": {
+    "theming":      "config-theming.md",
+    "directives":   "config-directives.md",
+    "layouts":      "config-layouts.md",
+    "configuration":"config-configuration.md",
+    "math":         "config-math.md",
+    "tidy_tree":    "config-tidy-tree.md"
+  },
+  "extra_docs": {
+    "examples": "examples.md"
+  },
+  "selection_guidance": {
+    "structure_and_flow": "flowchart",
+    "ordered_interactions": "sequence",
+    "status_transitions": "state",
+    "data_model": "er",
+    "formal_architecture_levels": "c4",
+    "cloud_service_topology": "architecture",
+    "oop_modelling": "class",
+    "project_timeline": "gantt",
+    "proportions": "pie",
+    "note": "If the request is an architecture/integration/data/lifecycle diagram, prefer a dhl_core type and use the builder. Only fall to a plain type when the user explicitly wants that chart kind (Gantt, pie, mindmap, kanban, radar, etc.)."
+  }
+}

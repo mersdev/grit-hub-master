@@ -1,0 +1,24 @@
+{
+  "type": "er",
+  "title": "CRM Core Schema",
+  "entities": [
+    {"name": "MEMBER", "attributes": [
+      {"type": "string", "name": "member_id", "key": "PK"},
+      {"type": "string", "name": "email"},
+      {"type": "int",    "name": "points_balance"}
+    ]},
+    {"name": "ORDER", "attributes": [
+      {"type": "string", "name": "order_id", "key": "PK"},
+      {"type": "string", "name": "member_id", "key": "FK"},
+      {"type": "decimal","name": "total"}
+    ]},
+    {"name": "CAMPAIGN", "attributes": [
+      {"type": "string", "name": "campaign_id", "key": "PK"},
+      {"type": "string", "name": "store_id"}
+    ]}
+  ],
+  "relationships": [
+    {"a": "MEMBER", "b": "ORDER", "cardinality": "||--o{", "label": "places"},
+    {"a": "CAMPAIGN", "b": "MEMBER", "cardinality": "}o--o{", "label": "targets"}
+  ]
+}

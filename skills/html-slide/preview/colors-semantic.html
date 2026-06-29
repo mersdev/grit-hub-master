@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Semantic colors</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;font-family:var(--font-sans);background:#fff;}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);height:160px;}
+  .s{padding:14px;display:flex;flex-direction:column;justify-content:space-between;font-size:11px;color:#000;}
+  .s .n{font-weight:700;font-size:13px;}
+  .s .role{font-size:10px;opacity:.7;margin-top:3px;}
+  .s .h{font-family:var(--font-mono);opacity:.7;letter-spacing:.02em;}
+  .s.dark{color:#fff;}
+  .s.dark .role,.s.dark .h{opacity:.85;}
+</style></head><body>
+<div class="row">
+  <div class="s dark" style="background:#006443;"><div><div class="n">GoGreen</div><div class="role">Sustainability</div></div><div class="h">#006443 · --dhl-green</div></div>
+  <div class="s dark" style="background:#D40511;"><div><div class="n">Danger</div><div class="role">Errors, destructive</div></div><div class="h">#D40511 · --danger</div></div>
+  <div class="s" style="background:#FFCC00;"><div><div class="n">Warning</div><div class="role">Attention, pending</div></div><div class="h">#FFCC00 · brand</div></div>
+  <div class="s dark" style="background:#003B7E;"><div><div class="n">Info</div><div class="role">B2B, neutral note</div></div><div class="h">#003B7E · --dhl-blue</div></div>
+</div>
+</body></html>

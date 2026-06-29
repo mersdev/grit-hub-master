@@ -1,0 +1,262 @@
+{
+  "_note": "Single source of truth for the DHL Mermaid standard. Generated from mermaid_styles.py. Do not invent fill colours at the diagram level.",
+  "diagram_types": {
+    "flowchart": {
+      "header": "flowchart LR",
+      "use": "solution / integration / data-flow / migration / infra-zone diagrams",
+      "supports_classdef": true
+    },
+    "sequence": {
+      "header": "sequenceDiagram",
+      "use": "request/response flows, API orchestration, multi-agent messaging",
+      "supports_classdef": false
+    },
+    "state": {
+      "header": "stateDiagram-v2",
+      "use": "lifecycle/status machines, order processing, registration/role flows",
+      "supports_classdef": true
+    },
+    "er": {
+      "header": "erDiagram",
+      "use": "database schemas and data models",
+      "supports_classdef": false
+    },
+    "c4": {
+      "header": "C4Context",
+      "use": "C4 system/container/component architecture views",
+      "supports_classdef": false
+    }
+  },
+  "color_schemes": {
+    "existing_no_change": {
+      "label": "Existing \u2013 No Change",
+      "human": "green",
+      "fill": "#85ca39",
+      "stroke": "#5a8a26",
+      "color": "#1b2a0a"
+    },
+    "existing_to_change": {
+      "label": "Existing \u2013 To Change",
+      "human": "yellow",
+      "fill": "#ffd21e",
+      "stroke": "#b8960f",
+      "color": "#3a2f00"
+    },
+    "existing_decomm": {
+      "label": "Existing \u2013 Decomm",
+      "human": "grey",
+      "fill": "#969696",
+      "stroke": "#6b6b6b",
+      "color": "#1a1a1a"
+    },
+    "new_target_solution": {
+      "label": "New Target Solution",
+      "human": "blue",
+      "fill": "#158aff",
+      "stroke": "#0a5cb8",
+      "color": "#ffffff"
+    },
+    "new_sub_component": {
+      "label": "New Sub Component",
+      "human": "red",
+      "fill": "#bd2f2f",
+      "stroke": "#7d1f1f",
+      "color": "#ffffff"
+    },
+    "logical_name": {
+      "label": "Logical Name",
+      "human": "yellow label",
+      "fill": "#ffd21e",
+      "stroke": "#b8960f",
+      "color": "#3a2f00"
+    },
+    "link_to_different_function_view": {
+      "label": "Link To Different Function View",
+      "human": "yellow, dark border",
+      "fill": "#ffd21e",
+      "stroke": "#404040",
+      "color": "#3a2f00"
+    }
+  },
+  "shapes": {
+    "actor": {
+      "label": "Actor / Role / Business Function",
+      "open": "([",
+      "close": "])",
+      "note": "Stadium shape stands in for an actor/role (Mermaid has no person icon in flowcharts)."
+    },
+    "application": {
+      "label": "Application",
+      "open": "[",
+      "close": "]",
+      "note": "Rectangle = application/system."
+    },
+    "business_orchestration": {
+      "label": "Business Orchestration",
+      "open": "{{",
+      "close": "}}",
+      "note": "Hexagon = orchestration/workflow/middleware."
+    },
+    "service": {
+      "label": "Service",
+      "open": "(",
+      "close": ")",
+      "note": "Rounded rectangle = API/service."
+    },
+    "database": {
+      "label": "Database",
+      "open": "[(",
+      "close": ")]",
+      "note": "Cylinder = database/datastore."
+    }
+  },
+  "connectors": {
+    "update_feed_existing": {
+      "label": "Update / Feed - Existing",
+      "line": "solid",
+      "stroke": "#404040",
+      "bidirectional": false
+    },
+    "update_feed_target": {
+      "label": "Update / Feed - Target",
+      "line": "dotted",
+      "stroke": "#404040",
+      "bidirectional": false
+    },
+    "query_response_existing": {
+      "label": "Query & Response - Existing",
+      "line": "solid",
+      "stroke": "#ff9933",
+      "bidirectional": true
+    },
+    "query_response_change": {
+      "label": "Query & Response - Change",
+      "line": "solid",
+      "stroke": "#ff0000",
+      "bidirectional": true
+    },
+    "query_response_new": {
+      "label": "Query & Response - New",
+      "line": "dotted",
+      "stroke": "#ff0000",
+      "bidirectional": true
+    },
+    "status_existing": {
+      "label": "Status - Existing",
+      "line": "solid",
+      "stroke": "#00b050",
+      "bidirectional": false
+    },
+    "status_target": {
+      "label": "Status - Target",
+      "line": "dotted",
+      "stroke": "#00b050",
+      "bidirectional": false
+    },
+    "persistent_process_call": {
+      "label": "Persistent Process Call",
+      "line": "thick",
+      "stroke": "#3399ff",
+      "bidirectional": false
+    },
+    "response": {
+      "label": "Response",
+      "line": "solid",
+      "stroke": "#92d050",
+      "bidirectional": false
+    }
+  },
+  "classdef_blocks": {
+    "existing_no_change": "classDef existing_no_change fill:#85ca39,stroke:#5a8a26,color:#1b2a0a,stroke-width:2px;",
+    "existing_to_change": "classDef existing_to_change fill:#ffd21e,stroke:#b8960f,color:#3a2f00,stroke-width:2px;",
+    "existing_decomm": "classDef existing_decomm fill:#969696,stroke:#6b6b6b,color:#1a1a1a,stroke-width:2px;",
+    "new_target_solution": "classDef new_target_solution fill:#158aff,stroke:#0a5cb8,color:#ffffff,stroke-width:2px;",
+    "new_sub_component": "classDef new_sub_component fill:#bd2f2f,stroke:#7d1f1f,color:#ffffff,stroke-width:2px;",
+    "logical_name": "classDef logical_name fill:#ffd21e,stroke:#b8960f,color:#3a2f00,stroke-width:2px;",
+    "link_to_different_function_view": "classDef link_to_different_function_view fill:#ffd21e,stroke:#404040,color:#3a2f00,stroke-width:2px;"
+  },
+  "aliases": {
+    "shapes": {
+      "actor": "actor",
+      "role": "actor",
+      "user": "actor",
+      "person": "actor",
+      "team": "actor",
+      "department": "actor",
+      "business_function": "actor",
+      "app": "application",
+      "application": "application",
+      "system": "application",
+      "frontend": "application",
+      "backend": "application",
+      "portal": "application",
+      "webapp": "application",
+      "mobile": "application",
+      "dashboard": "application",
+      "platform": "application",
+      "orchestration": "business_orchestration",
+      "workflow": "business_orchestration",
+      "middleware": "business_orchestration",
+      "process_engine": "business_orchestration",
+      "integration_flow": "business_orchestration",
+      "esb": "business_orchestration",
+      "service": "service",
+      "api": "service",
+      "microservice": "service",
+      "endpoint": "service",
+      "soa": "service",
+      "database": "database",
+      "db": "database",
+      "datastore": "database",
+      "warehouse": "database",
+      "schema": "database",
+      "table": "database",
+      "datalake": "database"
+    },
+    "colors": {
+      "no_change": "existing_no_change",
+      "unchanged": "existing_no_change",
+      "keep": "existing_no_change",
+      "green": "existing_no_change",
+      "to_change": "existing_to_change",
+      "change": "existing_to_change",
+      "modify": "existing_to_change",
+      "rewire": "existing_to_change",
+      "enhance": "existing_to_change",
+      "yellow": "existing_to_change",
+      "decomm": "existing_decomm",
+      "retire": "existing_decomm",
+      "remove": "existing_decomm",
+      "bypass": "existing_decomm",
+      "grey": "existing_decomm",
+      "new": "new_target_solution",
+      "target": "new_target_solution",
+      "new_solution": "new_target_solution",
+      "blue": "new_target_solution",
+      "subcomponent": "new_sub_component",
+      "sub": "new_sub_component",
+      "red": "new_sub_component"
+    },
+    "connectors": {
+      "feed": "update_feed_existing",
+      "update": "update_feed_existing",
+      "batch": "update_feed_existing",
+      "daily_feed": "update_feed_existing",
+      "future_feed": "update_feed_target",
+      "target_feed": "update_feed_target",
+      "query": "query_response_existing",
+      "request_reply": "query_response_existing",
+      "qr": "query_response_existing",
+      "api_call": "query_response_existing",
+      "changed_query": "query_response_change",
+      "new_query": "query_response_new",
+      "status": "status_existing",
+      "future_status": "status_target",
+      "persistent": "persistent_process_call",
+      "long_running": "persistent_process_call",
+      "response": "response",
+      "reply": "response",
+      "return": "response"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+---
+title: Order Placement – Target Flow
+---
+sequenceDiagram
+    autonumber
+    actor cust as Customer
+    participant web as Web Portal
+    participant orch as Order Orchestrator
+    participant inv as Inventory API
+    participant db as GCDB
+    cust<<->>web: browse
+    web--)orch: place order
+    orch->>inv: reserve stock
+    inv--)db: write reservation
+    db-->>inv: ok
+    Note over orch: Confirmation emitted asynchronously

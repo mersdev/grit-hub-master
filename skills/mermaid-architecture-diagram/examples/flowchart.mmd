@@ -1,0 +1,74 @@
+---
+title: CMIR Rewiring – IBS+ to GCDB
+---
+flowchart LR
+    subgraph Current_State["Current State"]
+        ibs["IBS+"]
+    end
+    subgraph Target_State["Target State"]
+        gcdb[("GCDB")]
+        cmir["CMIR"]
+    end
+    subgraph Consumers["Consumers"]
+        aet["AET Web App"]
+        gdash["Global Dashboard"]
+    end
+    gcdb -.->|data feed| cmir
+    aet <-->|reporting query| cmir
+    gdash <-->|reporting query| cmir
+    classDef existing_no_change fill:#85ca39,stroke:#5a8a26,color:#1b2a0a,stroke-width:2px;
+    classDef existing_to_change fill:#ffd21e,stroke:#b8960f,color:#3a2f00,stroke-width:2px;
+    classDef existing_decomm fill:#969696,stroke:#6b6b6b,color:#1a1a1a,stroke-width:2px;
+    classDef new_target_solution fill:#158aff,stroke:#0a5cb8,color:#ffffff,stroke-width:2px;
+    classDef new_sub_component fill:#bd2f2f,stroke:#7d1f1f,color:#ffffff,stroke-width:2px;
+    classDef logical_name fill:#ffd21e,stroke:#b8960f,color:#3a2f00,stroke-width:2px;
+    classDef link_to_different_function_view fill:#ffd21e,stroke:#404040,color:#3a2f00,stroke-width:2px;
+    class ibs existing_decomm;
+    class gcdb new_target_solution;
+    class cmir existing_to_change;
+    class aet existing_no_change;
+    class gdash existing_no_change;
+    linkStyle 0 stroke:#404040,stroke-width:2px;
+    linkStyle 1 stroke:#ff9933,stroke-width:2px;
+    linkStyle 2 stroke:#ff9933,stroke-width:2px;
+    subgraph LEGEND["DHL Legend — full reference"]
+        direction TB
+        subgraph LEG_LIFECYCLE["Lifecycle"]
+            direction TB
+            leg_existing_no_change["Existing – No Change"]
+            leg_existing_to_change["Existing – To Change"]
+            leg_existing_decomm["Existing – Decomm"]
+            leg_new_target_solution["New Target Solution"]
+            leg_new_sub_component["New Sub Component"]
+            leg_logical_name["Logical Name"]
+            leg_link_to_different_function_view["Link To Different Function View"]
+        end
+        subgraph LEG_CONNECTORS["Messages"]
+            direction LR
+            lc_update_feed_existing_a(("&nbsp;")) --> lc_update_feed_existing_b["Update / Feed - Existing"]
+            lc_update_feed_target_a(("&nbsp;")) -.-> lc_update_feed_target_b["Update / Feed - Target"]
+            lc_query_response_existing_a(("&nbsp;")) --> lc_query_response_existing_b["Query & Response - Existing"]
+            lc_query_response_change_a(("&nbsp;")) --> lc_query_response_change_b["Query & Response - Change"]
+            lc_query_response_new_a(("&nbsp;")) -.-> lc_query_response_new_b["Query & Response - New"]
+            lc_status_existing_a(("&nbsp;")) --> lc_status_existing_b["Status - Existing"]
+            lc_status_target_a(("&nbsp;")) -.-> lc_status_target_b["Status - Target"]
+            lc_persistent_process_call_a(("&nbsp;")) ==> lc_persistent_process_call_b["Persistent Process Call"]
+            lc_response_a(("&nbsp;")) --> lc_response_b["Response"]
+        end
+    end
+    class leg_existing_no_change existing_no_change;
+    class leg_existing_to_change existing_to_change;
+    class leg_existing_decomm existing_decomm;
+    class leg_new_target_solution new_target_solution;
+    class leg_new_sub_component new_sub_component;
+    class leg_logical_name logical_name;
+    class leg_link_to_different_function_view link_to_different_function_view;
+    linkStyle 3 stroke:#404040,stroke-width:2px;
+    linkStyle 4 stroke:#404040,stroke-width:2px;
+    linkStyle 5 stroke:#ff9933,stroke-width:2px;
+    linkStyle 6 stroke:#ff0000,stroke-width:2px;
+    linkStyle 7 stroke:#ff0000,stroke-width:2px;
+    linkStyle 8 stroke:#00b050,stroke-width:2px;
+    linkStyle 9 stroke:#00b050,stroke-width:2px;
+    linkStyle 10 stroke:#3399ff,stroke-width:2px;
+    linkStyle 11 stroke:#92d050,stroke-width:2px;

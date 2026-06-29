@@ -1,0 +1,6 @@
+# Generated portal files (not committed)
+dist/
+scripts/dist/
+__pycache__/
+*.pyc
+*.pyo

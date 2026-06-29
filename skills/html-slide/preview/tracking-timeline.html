@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Tracking timeline</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:#fff;font-family:var(--font-sans);color:#000;}
+  body{padding:26px 28px;}
+  .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;}
+  .tn{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;}
+  .status{font:700 11px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;color:var(--dhl-red);}
+  .bar{position:relative;height:36px;display:flex;align-items:center;}
+  .line{position:absolute;left:6px;right:6px;top:50%;height:2px;background:var(--dhl-gray-200);}
+  .progress{position:absolute;left:6px;top:50%;height:2px;background:var(--dhl-red);width:62%;}
+  .stops{position:relative;display:flex;justify-content:space-between;width:100%;}
+  .stop{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;}
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--dhl-gray-300);border:2px solid #fff;box-shadow:0 0 0 1px var(--dhl-gray-300);z-index:1;}
+  .stop.done .dot{background:var(--dhl-red);box-shadow:0 0 0 1px var(--dhl-red);}
+  .stop.active .dot{background:#fff;box-shadow:0 0 0 4px var(--dhl-red);transform:scale(1.05);}
+  .labels{display:flex;justify-content:space-between;margin-top:4px;}
+  .labels span{flex:1;text-align:center;font-size:11px;font-weight:700;color:var(--fg-muted);}
+  .labels .active{color:#000;}
+  .when{display:flex;justify-content:space-between;margin-top:2px;}
+  .when span{flex:1;text-align:center;font-size:10px;color:var(--fg-subtle);font-family:var(--font-mono);}
+</style></head><body>
+<div class="top"><span class="tn">1234 5678 9012</span><span class="status">● Out for Delivery</span></div>
+<div class="stops">
+  <div class="stop done"><div class="dot"></div></div>
+  <div class="stop done"><div class="dot"></div></div>
+  <div class="stop done"><div class="dot"></div></div>
+  <div class="stop active"><div class="dot"></div></div>
+  <div class="stop"><div class="dot"></div></div>
+</div>
+<div class="line" style="position:relative;height:0;margin-top:-25px;"></div>
+<div class="labels">
+  <span>Picked up</span><span>In transit</span><span>Customs</span><span class="active">Out for delivery</span><span>Delivered</span>
+</div>
+<div class="when">
+  <span>Mon 14:02</span><span>Tue 06:30</span><span>Wed 09:18</span><span>Today 09:42</span><span>By 18:00</span>
+</div>
+</body></html>

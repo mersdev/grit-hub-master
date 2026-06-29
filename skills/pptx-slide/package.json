@@ -1,0 +1,17 @@
+{
+  "name": "dhl-pptx-skill",
+  "version": "1.0.0",
+  "description": "DHL PPTX skill — exports HTML decks to PDF and PPTX via Playwright. Owns the shared DHL brand assets (logos, fonts, photography, dynamic elements, tokens).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "npx --yes serve . -p 3000",
+    "pdf":   "node scripts/html-to-pdf.mjs",
+    "pptx":  "node scripts/html-to-pptx.mjs",
+    "pptx:screenshots": "node scripts/html-to-pptx-screenshots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0",
+    "pptxgenjs":  "^3.12.0"
+  }
+}

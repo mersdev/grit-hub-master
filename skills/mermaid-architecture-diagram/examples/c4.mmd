@@ -1,0 +1,11 @@
+---
+title: Lead-Gen Platform – Context
+---
+C4Context
+    Person(sdr, "Sales Rep", "Reviews qualified leads")
+    System(leadgen, "Lead-Gen Platform", "Scrapes, enriches, scores SME leads")
+    System_Ext(maps, "Google Maps", "Places source")
+    System_Ext(crm, "CRM", "Downstream CRM")
+    Rel(sdr, leadgen, "Reviews leads", "HTTPS")
+    Rel(leadgen, maps, "Scrapes places", "Apify")
+    Rel(leadgen, crm, "Pushes qualified leads", "Webhook")

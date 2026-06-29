@@ -1,0 +1,55 @@
+{
+  "title": "GRIT Copilot — Agent Architecture",
+  "subtitle": "One assistant · specialized agents · shared memory · guarded integrations",
+  "aesthetic": "light",
+  "bands": [
+    {
+      "id": "people", "label": "PEOPLE", "accent": "violet",
+      "items": [
+        {"id": "members", "title": "Team members", "subtitle": "Developers, testers, architects"},
+        {"id": "admin", "title": "Team admin / contributor", "subtitle": "Adds new skills and agents"}
+      ]
+    },
+    {
+      "id": "access", "label": "ACCESS POINTS · GitHub Copilot — one assistant, two ways in", "accent": "teal",
+      "items": [
+        {"id": "cli", "title": "Command line (CLI)", "subtitle": ""},
+        {"id": "ide", "title": "IDE (VS Code / JetBrains)", "subtitle": ""}
+      ]
+    },
+    {
+      "id": "brain", "label": "INTELLIGENCE LAYER · the agent brain", "accent": "amber",
+      "items": [
+        {"id": "agents", "title": "Specialized agents", "subtitle": "A persona per role & task"},
+        {"id": "skills", "title": "Reusable skills", "subtitle": "Review, research, slides"}
+      ],
+      "hub": {"id": "hub", "title": "Agent", "subtitle": "Interpreter"}
+    },
+    {
+      "id": "memory", "label": "KNOWLEDGE CORE · shared memory that persists across sessions", "accent": "emerald",
+      "items": [
+        {"id": "mem", "title": "Memory system", "subtitle": "Remembers facts & decisions"},
+        {"id": "track", "title": "Learning tracker", "subtitle": "Tracks skill progression"}
+      ]
+    },
+    {
+      "id": "connect", "label": "CONNECTIONS & SAFEGUARDS", "accent": "orange",
+      "items": [
+        {"id": "mcp", "title": "MCP integrations", "subtitle": "Files, web, diagrams, reasoning"},
+        {"id": "guard", "title": "Security guardrails", "subtitle": "PII protection, secret scanning"}
+      ]
+    }
+  ],
+  "connections": [
+    {"from": "members", "to": "cli"},
+    {"from": "admin", "to": "ide"},
+    {"from": "cli", "to": "agents"},
+    {"from": "ide", "to": "skills"},
+    {"from": "agents", "to": "hub"},
+    {"from": "skills", "to": "hub"},
+    {"from": "hub", "to": "mem"},
+    {"from": "hub", "to": "track"},
+    {"from": "mem", "to": "mcp"},
+    {"from": "track", "to": "guard"}
+  ]
+}

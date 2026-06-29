@@ -1,0 +1,22 @@
+---
+title: User Registration & Role Lifecycle
+---
+stateDiagram-v2
+    Submitted : Submitted
+    Pending : Pending SuperAdmin
+    Approved : Approved
+    Rejected : Rejected
+    [*] --> Submitted
+    Submitted --> Pending : auto-route
+    Pending --> Approved : grant role
+    Pending --> Rejected : deny
+    Approved --> [*]
+    Rejected --> [*]
+    classDef existing_no_change fill:#85ca39,stroke:#5a8a26,color:#1b2a0a,stroke-width:2px;
+    classDef existing_to_change fill:#ffd21e,stroke:#b8960f,color:#3a2f00,stroke-width:2px;
+    classDef existing_decomm fill:#969696,stroke:#6b6b6b,color:#1a1a1a,stroke-width:2px;
+    classDef new_target_solution fill:#158aff,stroke:#0a5cb8,color:#ffffff,stroke-width:2px;
+    class Submitted existing_no_change
+    class Pending existing_to_change
+    class Approved new_target_solution
+    class Rejected existing_decomm

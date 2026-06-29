@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grit-hub-portal
+  labels:
+    app: grit-hub-portal
+    app.kubernetes.io/name: grit-hub-portal
+    app.kubernetes.io/component: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grit-hub-portal
+  template:
+    metadata:
+      labels:
+        app: grit-hub-portal
+    spec:
+      imagePullSecrets:
+        - name: cdcp-openshift-artifactory-secret    
+      containers:
+      - name: portal
+        image: cdcp-proj-cbj-docker-local-dev.artifactory-cbj.dhl.com/exp-cdcp-dev-test-dev/grit-hub-portal:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5

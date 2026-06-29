@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Logo Variants</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:#fff;}
+  .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;height:160px;}
+  .panel{display:flex;align-items:center;justify-content:center;padding:18px;position:relative;}
+  .panel img{max-height:46px;max-width:90%;display:block;}
+  .light{background:#fff;}
+  .yellow{background:var(--dhl-yellow);}
+  .black{background:#000;}
+  .red{background:var(--dhl-red);}
+  .label{position:absolute;font:700 9px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted);bottom:8px;left:10px;}
+  .yellow .label{color:rgba(0,0,0,.65);}
+  .black .label,.red .label{color:rgba(255,255,255,.7);}
+</style></head><body>
+<div class="wrap">
+  <div class="panel light"><img src="../assets/logos/DHL_Logo_rgb.svg"><span class="label">Color / white</span></div>
+  <div class="panel yellow"><img src="../assets/logos/DHL_Logo_BF_rgb.svg"><span class="label">BF / yellow</span></div>
+  <div class="panel black"><img src="../assets/logos/DHL_Logo_white_rgb.svg"><span class="label">White / dark</span></div>
+  <div class="panel red"><img src="../assets/logos/DHL_Logo_white_rgb.svg"><span class="label">White / red</span></div>
+</div>
+</body></html>

@@ -1,0 +1,243 @@
+/* ============================================================
+   DHL DESIGN SYSTEM — Colors & Type
+   Derived from official 2025 brand kit (logo, master template,
+   dynamic elements, Delivery font v2.500).
+   ============================================================ */
+
+/* --- Font face declarations: DHL Delivery (Dalton Maag) ---- */
+@font-face {
+  font-family: "Delivery";
+  src: url("fonts/Delivery_Lt.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery";
+  src: url("fonts/Delivery_LtIt.woff2") format("woff2");
+  font-weight: 300; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery";
+  src: url("fonts/Delivery_Rg.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery";
+  src: url("fonts/Delivery_It.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery";
+  src: url("fonts/Delivery_Bd.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery";
+  src: url("fonts/Delivery_BdIt.woff2") format("woff2");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery Condensed";
+  src: url("fonts/Delivery_CdLt.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Delivery Condensed";
+  src: url("fonts/Delivery_CdBlk.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* --- Brand primaries -------------------------------------- */
+  --dhl-yellow:        #FFCC00;   /* Post Yellow — primary surface */
+  --dhl-red:           #D40511;   /* DHL Red — logo, accent, alerts */
+
+  /* --- Yellow ramp (from master deck) ----------------------- */
+  --dhl-yellow-700:    #B38F00;   /* darker pressed/hover */
+  --dhl-yellow-600:    #E6B800;   /* hover/darker */
+  --dhl-yellow-500:    #FFCC00;   /* base */
+  --dhl-yellow-400:    #FFDB4C;
+  --dhl-yellow-300:    #FFE57F;
+  --dhl-yellow-200:    #FFF0B2;
+  --dhl-yellow-100:    #FFF5CC;
+  --dhl-yellow-accent: #FFDE59;   /* secondary yellow accent */
+
+  /* --- Red ramp --------------------------------------------- */
+  --dhl-red-700:       #A30410;
+  --dhl-red-600:       #BD0510;
+  --dhl-red-500:       #D40511;
+  --dhl-red-400:       #E33A44;
+  --dhl-red-200:       #F4B0B5;
+  --dhl-red-100:       #FBE0E2;
+
+  /* --- Neutrals (from master deck theme) -------------------- */
+  --dhl-black:         #000000;
+  --dhl-gray-900:      #1A1A1A;
+  --dhl-gray-800:      #333333;
+  --dhl-gray-700:      #4D4D4D;
+  --dhl-gray-600:      #666666;
+  --dhl-gray-500:      #8C8C8C;
+  --dhl-gray-400:      #B2B2B2;
+  --dhl-gray-300:      #CCCCCC;
+  --dhl-gray-200:      #E5E5E5;
+  --dhl-gray-150:      #EBEBEB;
+  --dhl-gray-100:      #F2F2F2;
+  --dhl-gray-50:       #FAFAFA;
+  --dhl-white:         #FFFFFF;
+
+  /* --- Sustainability / functional --------------------------- */
+  --dhl-green:         #006443;   /* GoGreen sustainability mark */
+  --dhl-green-100:     #DDEDE6;
+  --dhl-blue:          #003B7E;   /* enterprise / B2B / "Group" */
+  --dhl-violet:        #6E257C;   /* eCommerce */
+
+  /* --- Semantic surfaces / text ----------------------------- */
+  --bg:                var(--dhl-white);
+  --bg-elev:           var(--dhl-white);
+  --bg-subtle:         var(--dhl-gray-100);
+  --bg-brand:          var(--dhl-yellow);
+  --bg-inverse:        var(--dhl-gray-900);
+
+  --fg:                var(--dhl-gray-900);   /* primary text */
+  --fg-muted:          var(--dhl-gray-600);   /* secondary text */
+  --fg-subtle:         var(--dhl-gray-500);   /* tertiary, captions */
+  --fg-inverse:        var(--dhl-white);
+  --fg-brand:          var(--dhl-red);
+  --fg-link:           var(--dhl-red);
+
+  --border:            var(--dhl-gray-200);
+  --border-strong:     var(--dhl-gray-400);
+
+  --success:           var(--dhl-green);
+  --danger:            var(--dhl-red);
+  --warning:           #B57E00;   /* darkened yellow for AA contrast */
+
+  /* --- Type families ---------------------------------------- */
+  --font-sans:         "Delivery", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-display:      "Delivery Condensed", "Delivery", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:         ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* --- Type scale (from master template: 36/28/18/15/12/10) - */
+  --text-2xs:          10px;   /* footnotes 1) */
+  --text-xs:           12px;   /* body copy small / footer */
+  --text-sm:           15px;   /* action title / list copy */
+  --text-md:           18px;   /* subline / headlines small */
+  --text-lg:           24px;
+  --text-xl:           28px;   /* statement */
+  --text-2xl:          36px;   /* slide title */
+  --text-3xl:          48px;
+  --text-4xl:          64px;   /* hero display */
+  --text-5xl:          88px;   /* big numbers / display */
+
+  --leading-tight:     1.05;
+  --leading-snug:      1.2;
+  --leading-normal:    1.4;
+  --leading-loose:     1.55;
+
+  /* tracking: Delivery is friendly, mostly default; only tighten very large */
+  --tracking-tight:    -0.01em;
+  --tracking-normal:    0;
+  --tracking-wide:      0.04em;
+  --tracking-allcaps:   0.06em;
+
+  /* --- Radii ------------------------------------------------ */
+  /* DHL is mostly squared; corners stay subtle. Used 0 for cards
+     in master deck; 4–8 for buttons; full for pill chips. */
+  --radius-none:       0;
+  --radius-xs:         2px;
+  --radius-sm:         4px;
+  --radius-md:         8px;
+  --radius-lg:         12px;
+  --radius-pill:       999px;
+
+  /* --- Spacing scale (4px grid) ----------------------------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* --- Elevation -------------------------------------------- */
+  /* DHL avoids heavy drop-shadows in print; UI uses light flat
+     shadows + 1px borders. */
+  --shadow-none:  none;
+  --shadow-xs:    0 1px 2px rgba(0,0,0,0.06);
+  --shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:    0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:    0 12px 28px rgba(0,0,0,0.12), 0 4px 10px rgba(0,0,0,0.06);
+  --shadow-focus: 0 0 0 3px rgba(212,5,17,0.30);   /* red focus ring */
+  --shadow-focus-yellow: 0 0 0 3px rgba(0,0,0,0.45); /* on yellow bg */
+
+  /* --- Motion ----------------------------------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+  --dur-fast:    120ms;
+  --dur-base:    180ms;
+  --dur-slow:    280ms;
+}
+
+/* =============================================================
+   Element defaults / semantic type
+   ============================================================= */
+html { font-family: var(--font-sans); color: var(--fg); background: var(--bg); }
+body { margin: 0; font-size: var(--text-sm); line-height: var(--leading-normal); }
+
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700; color: var(--fg); }
+
+/* Display — uses Delivery Condensed Black for big hero hits */
+.display-1 { font-family: var(--font-display); font-weight: 900;
+  font-size: var(--text-5xl); line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight); }
+.display-2 { font-family: var(--font-display); font-weight: 900;
+  font-size: var(--text-4xl); line-height: var(--leading-tight); }
+
+/* Slide-style headlines (Delivery Bold, master deck spec) */
+h1, .h1 { font-size: var(--text-2xl); line-height: var(--leading-snug); }     /* 36 */
+h2, .h2 { font-size: var(--text-xl); line-height: var(--leading-snug); }      /* 28 */
+h3, .h3 { font-size: var(--text-md); line-height: var(--leading-snug); }      /* 18 */
+h4, .h4 { font-size: var(--text-sm); line-height: var(--leading-snug); font-weight: 700; }
+h5, .h5 { font-size: var(--text-xs); line-height: var(--leading-normal); font-weight: 700; }
+
+/* Sublines — Delivery Regular */
+.subline { font-size: var(--text-md); font-weight: 400; color: var(--fg-muted); }
+
+/* Body */
+p, .body { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--fg); }
+.body-sm { font-size: var(--text-xs); line-height: var(--leading-normal); }
+.caption { font-size: var(--text-xs); color: var(--fg-muted); }
+.footnote { font-size: var(--text-2xs); color: var(--fg-subtle); }
+
+/* Eyebrow / overline (used sparingly above titles) */
+.eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-allcaps);
+  color: var(--fg-muted);
+}
+
+/* Links */
+a { color: var(--fg-link); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--dhl-red-700); }
+
+/* Code */
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  background: var(--dhl-gray-100);
+  padding: 0 4px;
+  border-radius: var(--radius-xs);
+}
+
+/* Selection */
+::selection { background: var(--dhl-yellow); color: var(--dhl-gray-900); }
+
+/* Focus ring (universal) */
+:focus-visible { outline: none; box-shadow: var(--shadow-focus); }

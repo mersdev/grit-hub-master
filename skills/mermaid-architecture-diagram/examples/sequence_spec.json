@@ -1,0 +1,19 @@
+{
+  "type": "sequence",
+  "title": "Order Placement – Target Flow",
+  "participants": [
+    {"id": "cust", "label": "Customer", "actor": true},
+    {"id": "web",  "label": "Web Portal"},
+    {"id": "orch", "label": "Order Orchestrator"},
+    {"id": "inv",  "label": "Inventory API"},
+    {"id": "db",   "label": "GCDB"}
+  ],
+  "messages": [
+    {"source": "cust", "target": "web",  "connector": "query_response_existing", "label": "browse", "bidirectional": true},
+    {"source": "web",  "target": "orch", "connector": "query_response_new",      "label": "place order"},
+    {"source": "orch", "target": "inv",  "connector": "persistent_process_call", "label": "reserve stock"},
+    {"source": "inv",  "target": "db",   "connector": "query_response_new",      "label": "write reservation"},
+    {"source": "db",   "target": "inv",  "connector": "response",                "label": "ok"},
+    {"note": "Confirmation emitted asynchronously", "over": "orch"}
+  ]
+}

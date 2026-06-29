@@ -1,0 +1,23 @@
+{
+  "type": "flowchart",
+  "title": "CMIR Rewiring – IBS+ to GCDB",
+  "direction": "LR",
+  "nodes": [
+    {"id": "ibs",  "label": "IBS+",             "shape": "application", "color": "existing_decomm"},
+    {"id": "gcdb", "label": "GCDB",             "shape": "database",    "color": "new_target_solution"},
+    {"id": "cmir", "label": "CMIR",             "shape": "application", "color": "existing_to_change"},
+    {"id": "aet",  "label": "AET Web App",      "shape": "application", "color": "existing_no_change"},
+    {"id": "gdash","label": "Global Dashboard", "shape": "application", "color": "existing_no_change"}
+  ],
+  "subgraphs": [
+    {"name": "Current State", "nodes": ["ibs"]},
+    {"name": "Target State",  "nodes": ["gcdb", "cmir"]},
+    {"name": "Consumers",     "nodes": ["aet", "gdash"]}
+  ],
+  "edges": [
+    {"source": "gcdb", "target": "cmir", "connector": "update_feed_target",      "label": "data feed"},
+    {"source": "aet",  "target": "cmir", "connector": "query_response_existing", "label": "reporting query", "bidirectional": true},
+    {"source": "gdash","target": "cmir", "connector": "query_response_existing", "label": "reporting query", "bidirectional": true}
+  ],
+  "legend": true
+}

@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "dhl-brand",
+  "version": "2025.1",
+  "description": "Machine-readable manifest of DHL brand tokens. Mirrors colors_and_type.css. Source of truth for any script that needs brand values without parsing CSS.",
+  "promise": "Excellence. Simply delivered.",
+  "colors": {
+    "primary": {
+      "yellow":  { "hex": "#FFCC00", "name": "Post Yellow",   "role": "Primary brand surface, hero backgrounds, primary button fills (with black text)" },
+      "red":     { "hex": "#D40511", "name": "DHL Red",        "role": "Logo, links, primary CTA on white, alerts, accent strokes" }
+    },
+    "neutrals": {
+      "black":     "#000000",
+      "white":     "#FFFFFF",
+      "gray-900":  "#1A1A1A",
+      "gray-800":  "#333333",
+      "gray-700":  "#4D4D4D",
+      "gray-600":  "#666666",
+      "gray-500":  "#8C8C8C",
+      "gray-400":  "#B2B2B2",
+      "gray-300":  "#CCCCCC",
+      "gray-200":  "#E5E5E5",
+      "gray-100":  "#F2F2F2"
+    },
+    "yellow-ramp": {
+      "100": "#FFF5CC",
+      "200": "#FFF0B2",
+      "300": "#FFE57F",
+      "400": "#FFDB4C",
+      "500": "#FFCC00",
+      "600": "#E6B800",
+      "700": "#B38F00",
+      "accent": "#FFDE59"
+    },
+    "red-ramp": {
+      "100": "#FBE0E2",
+      "200": "#F4B0B5",
+      "400": "#E33A44",
+      "500": "#D40511",
+      "600": "#BD0510",
+      "700": "#A30410"
+    },
+    "semantic": {
+      "green":  { "hex": "#006443", "use": "GoGreen / sustainability marker only. Never decorative." },
+      "blue":   { "hex": "#0066B3", "use": "Campaign accent only. Never primary surface." },
+      "violet": { "hex": "#7C3F98", "use": "Campaign accent only. Never primary surface." }
+    },
+    "pairing_law": [
+      "Text on yellow is always black (#000000).",
+      "Text on red is always white (#FFFFFF).",
+      "Yellow and red appear together as graphic elements only (chevrons, freeform shapes) \u2014 never as text on text."
+    ]
+  },
+  "typography": {
+    "families": {
+      "sans":    "Delivery, Helvetica Neue, Arial, sans-serif",
+      "display": "Delivery Condensed, Delivery, sans-serif",
+      "mono":    "ui-monospace, SF Mono, Menlo, monospace"
+    },
+    "weights_available": [300, 400, 700, 900],
+    "roles": {
+      "display":  { "family": "display", "weight": 900, "size_px_range": [88, 168], "use": "Slide hero, title slides. Delivery Condensed Black." },
+      "headline": { "family": "sans",    "weight": 700, "size_px_range": [56, 72],  "use": "Slide titles. Delivery Bold." },
+      "subtitle": { "family": "sans",    "weight": 400, "size_px_range": [28, 36],  "use": "Subtitles, ledes. Delivery Regular." },
+      "body":     { "family": "sans",    "weight": 400, "size_px_range": [20, 28],  "use": "Slide body, paragraphs. Delivery Regular." },
+      "eyebrow":  { "family": "sans",    "weight": 700, "size_px_range": [18, 24],  "uppercase": true, "letter_spacing": "0.08em", "use": "Overlines above titles. Delivery Bold, uppercase." },
+      "ui_label": { "family": "sans",    "weight": 700, "size_px_range": [14, 18],  "use": "UI labels, button text. Delivery Bold." },
+      "mono":     { "family": "mono",    "weight": 400, "size_px_range": [20, 24],  "use": "Tracking numbers, code." }
+    },
+    "scale_px": {
+      "2xs": 10, "xs": 12, "sm": 15, "md": 18,
+      "lg": 24, "xl": 28, "2xl": 36, "3xl": 48,
+      "4xl": 64, "5xl": 88
+    },
+    "line_heights": {
+      "headline": 1.05,
+      "title": 1.15,
+      "body": 1.4
+    },
+    "master_deck_pt_scale": [36, 28, 18, 15, 12, 10]
+  },
+  "fonts": {
+    "format": "woff2",
+    "location": "fonts/",
+    "files": [
+      { "file": "Delivery_Lt.woff2",    "family": "Delivery",           "weight": 300, "style": "normal" },
+      { "file": "Delivery_LtIt.woff2",  "family": "Delivery",           "weight": 300, "style": "italic" },
+      { "file": "Delivery_Rg.woff2",    "family": "Delivery",           "weight": 400, "style": "normal" },
+      { "file": "Delivery_It.woff2",    "family": "Delivery",           "weight": 400, "style": "italic" },
+      { "file": "Delivery_Bd.woff2",    "family": "Delivery",           "weight": 700, "style": "normal" },
+      { "file": "Delivery_BdIt.woff2",  "family": "Delivery",           "weight": 700, "style": "italic" },
+      { "file": "Delivery_CdLt.woff2",  "family": "Delivery Condensed", "weight": 300, "style": "normal" },
+      { "file": "Delivery_CdBlk.woff2", "family": "Delivery Condensed", "weight": 900, "style": "normal" }
+    ],
+    "fallback": "system-ui, sans-serif",
+    "fallback_rule": "Use only if Delivery is genuinely missing. Always flag the substitution to the user."
+  },
+  "spacing": {
+    "grid_px": 4,
+    "scale_tokens": {
+      "1": 4, "2": 8, "3": 12, "4": 16, "5": 20, "6": 24, "8": 32,
+      "10": 40, "12": 48, "16": 64, "20": 80, "24": 96
+    }
+  },
+  "radii": {
+    "none": 0,
+    "sm": 4,
+    "md": 8,
+    "pill": 9999,
+    "rule": "Squared or lightly-rounded (\u2264 8px). Pill chips reserved for tracking-status badges only."
+  },
+  "elevation": {
+    "shadow_sm": "0 1px 3px rgba(0,0,0,0.08)",
+    "shadow_md": "0 4px 12px rgba(0,0,0,0.10)",
+    "rule": "UI cards use shadow_sm. Floating panels shadow_md. Print/slides use no shadow \u2014 flat blocks of yellow do the elevation work."
+  },
+  "motion": {
+    "duration_ms": { "fast": 120, "standard": 180, "emphasized": 280 },
+    "easing": "cubic-bezier(0.2, 0, 0, 1)",
+    "rule": "No bouncy springs. Transitions on color, opacity, transform-translate only \u2014 never on width/height."
+  },
+  "logo": {
+    "files": {
+      "color":     "assets/logos/DHL_Logo_rgb.svg",
+      "color_png": "assets/logos/DHL_Logo_rgb.png",
+      "white":     "assets/logos/DHL_Logo_white_rgb.svg",
+      "white_png": "assets/logos/DHL_Logo_white_rgb.png",
+      "black":     "assets/logos/DHL_Logo_black_rgb.svg",
+      "black_png": "assets/logos/DHL_Logo_black_rgb.png",
+      "bf":        "assets/logos/DHL_Logo_BF_rgb.svg",
+      "bf_png":    "assets/logos/DHL_Logo_BF_rgb.png"
+    },
+    "usage": {
+      "light_or_yellow_bg": "color",
+      "dark_or_red_or_photo_bg": "white"
+    },
+    "standard_width_px": 180,
+    "edge_offset_px": 48,
+    "default_position": "top-left",
+    "forbidden": [
+      "recolor",
+      "rotate",
+      "distort or skew",
+      "apply drop shadow / glow / blur / hue-rotate / brightness filter",
+      "replace with partial mark or icon variant",
+      "place over busy photography without sufficient contrast"
+    ]
+  },
+  "slide_chrome": {
+    "canvas_px": { "width": 1920, "height": 1080 },
+    "padding_px": { "horizontal": 100, "top": 160, "bottom_to_pagebar": 34 },
+    "page_bar": {
+      "left": "Signoff line in red, font-weight 700: 'Excellence. Simply delivered.'",
+      "right": "Page number, e.g. '03/18'",
+      "font_size_px": 18
+    },
+    "signoff": "Excellence. Simply delivered.",
+    "required_on_every_content_slide": [
+      "DHL logo top-left, 180px wide",
+      "Signoff line bottom-left of page bar",
+      "Page number bottom-right of page bar"
+    ]
+  },
+  "layout_patterns": [
+    { "id": 1, "name": "Yellow hero",       "use": "Title slide / section opener", "key": "Post Yellow surface, Delivery Condensed Black headline 140\u2013168px, eyebrow + sub, red chevron stack in a corner" },
+    { "id": 2, "name": "White content",     "use": "Standard body slide",          "key": "Eyebrow + title + sub + 2-column body with info card (yellow / red / black)" },
+    { "id": 3, "name": "Big stat",          "use": "Headline number / claim",       "key": "Dark background, huge yellow numeral, single supporting line" },
+    { "id": 4, "name": "Two-up comparison", "use": "A vs B, before/after",          "key": "Yellow card + black card side by side, dashed bullets" },
+    { "id": 5, "name": "Pillar grid",       "use": "Architecture, capability matrix","key": "4 cards alternating white / yellow / red / black, each with numeral + headline + line" },
+    { "id": 6, "name": "Yellow closing",    "use": "Final slide / CTA",             "key": "Center chevron mark, signoff line, big CTA headline, centered DHL logo" }
+  ],
+  "voice": {
+    "tone": "Plainspoken, declarative, warm-utilitarian.",
+    "casing": {
+      "ui_surfaces": "sentence case",
+      "product_names_and_ctas": "Title Case",
+      "labels_and_tracking_statuses": "ALL CAPS"
+    },
+    "person": "Mostly 'you'. 'We' sparingly in B2B copy. Avoid 'one' and 'the user'.",
+    "punctuation": "Periods after short statements are deliberate \u2014 they add rhythm. No exclamation marks except in genuine confirmation toasts.",
+    "money_format": "ISO code after amount: '\u20ac24.50 EUR', '$18.00 USD'",
+    "tracking_number_format": "Groups of 4: '1234 5678 9012'",
+    "time_format": {
+      "consumer": "12-hour local, e.g. 'by 6:00 PM'",
+      "ops": "24-hour with time zone, e.g. 'ETA 18:00 CET'"
+    },
+    "forbidden_in_copy": [
+      "emoji",
+      "speed cliches ('at the speed of light', 'faster than ever')",
+      "apology theater",
+      "bullet-pointed value props on hero / landing",
+      "internal jargon in external copy (ULD, AWB, HAWB) unless audience is freight forwarders"
+    ]
+  },
+  "iconography": {
+    "system": "Lucide",
+    "cdn": "https://unpkg.com/lucide@latest",
+    "usage": "<i data-lucide=\"package\"></i>",
+    "stroke_px": { "default": 1.5, "small_16px": 1.25 },
+    "color": "currentColor (default), --dhl-red for accent, --dhl-gray-500 for inactive",
+    "sizes_px": [16, 20, 24, 32, 48],
+    "workhorse_size_px": 24,
+    "rule": "Lucide substitutes for DHL's internal icon set. If the real library becomes available, swap. Dynamic-element SVGs are decorative blocks \u2014 not icons \u2014 never inline with text."
+  },
+  "forbidden_globally": [
+    "Inline hard-coded brand hex values (#FFCC00, #D40511) \u2014 always use CSS custom properties",
+    "Emoji anywhere",
+    "Gradients on brand surfaces",
+    "Frosted glass / backdrop-blur effects",
+    "Soft drop shadows on yellow surfaces",
+    "Any filter on the wordmark",
+    "Blue / green / violet as a primary surface",
+    "Text over faces in photography",
+    "More than 3 text sizes per slide",
+    "Content overflowing 1920\u00d71080 on a slide"
+  ],
+  "validation_checklist": [
+    "colors_and_type.css linked in every HTML file",
+    "No hard-coded brand hex inline",
+    "Correct logo variant for background, 180px on content slides, no effects",
+    "Signoff line on every content slide",
+    "Page number on every content slide",
+    "Text on yellow is black; text on red is white",
+    "No emoji, no gradients, no frosted glass",
+    "Every <section> fits within 1920\u00d71080"
+  ]
+}

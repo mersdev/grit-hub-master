@@ -1,0 +1,15 @@
+---
+title: IBS+ to GCDB Migration Phasing
+---
+gantt
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+    section Build
+    Stand up GCDB            :done,    g1, 2026-01-01, 30d
+    Build CMIR adapters      :active,  g2, after g1, 45d
+    section Cutover
+    Dual-run feeds           :         g3, after g2, 30d
+    Switch reporting queries :         g4, after g3, 14d
+    section Decommission
+    Bypass IBS+              :         g5, after g4, 14d
+    Retire IBS+              :crit,    g6, after g5, 7d

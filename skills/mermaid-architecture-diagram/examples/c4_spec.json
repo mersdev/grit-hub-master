@@ -1,0 +1,16 @@
+{
+  "type": "c4",
+  "title": "Lead-Gen Platform – Context",
+  "level": "C4Context",
+  "elements": [
+    {"kind": "person", "id": "sdr",  "label": "Sales Rep", "descr": "Reviews qualified leads"},
+    {"kind": "system", "id": "leadgen", "label": "Lead-Gen Platform", "descr": "Scrapes, enriches, scores SME leads"},
+    {"kind": "system", "id": "maps", "label": "Google Maps", "descr": "Places source", "external": true},
+    {"kind": "system", "id": "crm",  "label": "CRM", "descr": "Downstream CRM", "external": true}
+  ],
+  "relationships": [
+    {"a": "sdr", "b": "leadgen", "label": "Reviews leads", "tech": "HTTPS"},
+    {"a": "leadgen", "b": "maps", "label": "Scrapes places", "tech": "Apify"},
+    {"a": "leadgen", "b": "crm", "label": "Pushes qualified leads", "tech": "Webhook"}
+  ]
+}

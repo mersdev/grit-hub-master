@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Badges & chips</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:#fff;font-family:var(--font-sans);color:#000;}
+  body{padding:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font:700 11px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;}
+  .dot{width:6px;height:6px;border-radius:50%;}
+  .delivered{background:#DDEDE6;color:#006443;}
+  .delivered .dot{background:#006443;}
+  .out{background:#FFCC00;color:#000;}
+  .out .dot{background:#000;}
+  .transit{background:#F2F2F2;color:#333;}
+  .transit .dot{background:#666;}
+  .exception{background:#FBE0E2;color:#A30410;}
+  .exception .dot{background:#D40511;}
+  .label{display:inline-flex;background:#000;color:#fff;padding:3px 8px;font:700 10px/1.4 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;border-radius:2px;}
+  .red{background:var(--dhl-red);}
+  .ghost{background:transparent;color:#000;border:1.5px solid #000;}
+</style></head><body>
+<span class="chip delivered"><span class="dot"></span>Delivered</span>
+<span class="chip out"><span class="dot"></span>Out for Delivery</span>
+<span class="chip transit"><span class="dot"></span>In Transit</span>
+<span class="chip exception"><span class="dot"></span>Exception</span>
+<span class="label">Express</span>
+<span class="label red">Priority</span>
+<span class="label ghost">Domestic</span>
+</body></html>

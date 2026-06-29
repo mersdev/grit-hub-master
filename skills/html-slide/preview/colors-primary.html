@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Brand Colors</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:#fff;font-family:var(--font-sans);}
+  .row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:0;height:200px;}
+  .swatch{padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;}
+  .swatch .name{font-size:14px;font-weight:700;}
+  .swatch .hex{font-family:var(--font-mono);font-size:11px;opacity:.7;letter-spacing:.04em;}
+  .yellow{background:var(--dhl-yellow);color:#000;}
+  .red{background:var(--dhl-red);color:#fff;}
+  .black{background:#000;color:#fff;}
+</style></head><body>
+<div class="row">
+  <div class="swatch yellow">
+    <div><div class="name">Post Yellow</div><div class="hex" style="margin-top:4px;">Primary surface</div></div>
+    <div class="hex">#FFCC00 · --dhl-yellow</div>
+  </div>
+  <div class="swatch red">
+    <div><div class="name">DHL Red</div><div class="hex" style="margin-top:4px;color:rgba(255,255,255,.85);">Logo · accent · alert</div></div>
+    <div class="hex">#D40511 · --dhl-red</div>
+  </div>
+  <div class="swatch black">
+    <div><div class="name">Black</div><div class="hex" style="margin-top:4px;color:rgba(255,255,255,.85);">Text on yellow</div></div>
+    <div class="hex">#000000 · --dhl-black</div>
+  </div>
+</div>
+</body></html>

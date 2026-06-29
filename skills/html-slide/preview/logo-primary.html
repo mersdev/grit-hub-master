@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Brand Logo</title>
+<link rel="stylesheet" href="../../pptx/colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--dhl-white);}
+  .wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;height:160px;}
+  .panel{display:flex;align-items:center;justify-content:center;padding:24px;}
+  .light{background:var(--dhl-white);}
+  .yellow{background:var(--dhl-yellow);}
+  .panel img{height:56px;width:auto;display:block;}
+  .label{position:absolute;font:700 10px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted);bottom:8px;left:12px;}
+  .panel.yellow .label{color:rgba(0,0,0,.6);}
+  .panel{position:relative;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="panel light"><img src="../assets/logos/DHL_Logo_rgb.svg" alt="DHL"><span class="label">RGB on white</span></div>
+  <div class="panel yellow"><img src="../assets/logos/DHL_Logo_rgb.svg" alt="DHL"><span class="label">RGB on yellow</span></div>
+</div>
+</body></html>

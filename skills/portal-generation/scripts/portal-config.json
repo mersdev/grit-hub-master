@@ -1,0 +1,39 @@
+{
+  "project_name": "GRIT Copilot Agents",
+  "project_tagline": "Excellence. Simply Delivered.",
+  "github_repo": "https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub",
+  "github_base_url": "https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub/blob/master",
+  "banner_image": "assets/GRIT Hub.png",
+  "logo_image": "",
+  "colors": {
+    "primary": "#D40511",
+    "secondary": "#FFCC00",
+    "text": "#323232",
+    "background": "#FFFFFF",
+    "lightBackground": "#EDEDED",
+    "midGray": "#767676"
+  },
+  "fonts": {
+    "body": "'Delivery', 'Arial', 'Helvetica Neue', sans-serif",
+    "heading": "'Delivery', 'Arial', sans-serif",
+    "code": "'Courier New', monospace"
+  },
+  "timestamp_format": "%B %d, %Y, %I:%M:%S %p GMT+8",
+  "deploy_to_github_pages": true,
+  "custom_domain": "",
+  "analytics": {
+    "google_analytics": "",
+    "plausible_domain": ""
+  },
+  "features": {
+    "show_stats": true,
+    "show_contributors": true,
+    "show_getting_started": true,
+    "enable_search": true
+  },
+  "metadata": {
+    "description": "Discover, explore, and deploy intelligent agents for your workflow",
+    "keywords": "agents, copilot, AI, automation, DHL",
+    "author": "GRIT"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "title": "CMIR Rewiring – IBS+ to GCDB",
+  "page_w": 1200,
+  "page_h": 700,
+  "nodes": [
+    {"id": "ibs",  "label": "IBS+",             "shape": "application", "color": "existing_decomm"},
+    {"id": "gcdb", "label": "GCDB",             "shape": "database",    "color": "new_target_solution"},
+    {"id": "cmir", "label": "CMIR",             "shape": "application", "color": "existing_to_change"},
+    {"id": "aet",  "label": "AET Web App",      "shape": "application", "color": "existing_no_change"},
+    {"id": "gdash","label": "Global Dashboard", "shape": "application", "color": "existing_no_change"}
+  ],
+  "layers": {"ibs": 0, "gcdb": 0, "cmir": 1, "aet": 2, "gdash": 2},
+  "edges": [
+    {"source": "gcdb", "target": "cmir", "connector": "update_feed_target",   "label": "data feed"},
+    {"source": "aet",  "target": "cmir", "connector": "query_response_existing", "label": "reporting query", "bidirectional": true},
+    {"source": "gdash","target": "cmir", "connector": "query_response_existing", "label": "reporting query", "bidirectional": true}
+  ],
+  "legend": {
+    "colors": ["existing_decomm", "new_target_solution", "existing_to_change", "existing_no_change"],
+    "connectors": ["update_feed_target", "query_response_existing"]
+  }
+}

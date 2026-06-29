@@ -1,0 +1,10 @@
+{
+  "name": "mermaid-dhl-validator",
+  "private": true,
+  "type": "module",
+  "description": "Optional headless Mermaid syntax validation deps for validate_mermaid.py",
+  "dependencies": {
+    "mermaid": "^11",
+    "jsdom": "^24"
+  }
+}

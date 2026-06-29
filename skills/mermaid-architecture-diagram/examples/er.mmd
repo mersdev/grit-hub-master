@@ -1,0 +1,20 @@
+---
+title: CRM Core Schema
+---
+erDiagram
+    MEMBER ||--o{ ORDER : "places"
+    CAMPAIGN }o--o{ MEMBER : "targets"
+    MEMBER {
+        string member_id PK
+        string email
+        int points_balance
+    }
+    ORDER {
+        string order_id PK
+        string member_id FK
+        decimal total
+    }
+    CAMPAIGN {
+        string campaign_id PK
+        string store_id
+    }
