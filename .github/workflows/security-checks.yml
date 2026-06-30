@@ -32,10 +32,10 @@ jobs:
         run: python -m pip install --upgrade pip pytest pyyaml
 
       - name: Run skill readiness gate
-        run: python skill-evals/run_skill_eval.py --all --strict
+        run: python tests/skill-evals/run_skill_eval.py --all --strict
 
       - name: Run SkillSpector-style security tests
-        run: python -m pytest security-script -q
+        run: python -m pytest tests/security-script -q
 
       - name: Verify setup dry run
         run: node setup.js --dry-run --skip-python

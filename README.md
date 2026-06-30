@@ -1,205 +1,87 @@
 # GRIT Hub
 
-A team-ready AI agent framework for GitHub Copilot with persistent memory, learning tracking, specialized role-based agents, and reusable skills.
+GRIT Hub is a shared library of Copilot agents and skills. The default path is simple: start with one plain-language prompt, let `development-coach` route you, and reuse an existing agent before creating a new one.
 
----
+## Start Here
 
-## Quick Start
-
-Not technical? Start with this prompt:
+Use this prompt first:
 
 ```text
 I want an AI helper for my team. Ask me simple questions and recommend whether to reuse, improve, or create an agent.
 ```
 
-GRIT Hub will guide you in plain language, pick the smallest safe skill set, and avoid creating new agents when an existing one already works.
+That is the primary onboarding path for non-technical users.
 
-Want only one role instead of everything?
+## Two Journeys
 
-```powershell
-# Pull only Developer agents into .github/agents
-node setup.js --role developer --skip-python
+### 1. Non-Technical Onboarding
 
-# Pull only one specific agent
-node setup.js --agent fullstack-engineer --skip-python
-```
+1. Open Copilot in your IDE or CLI from this repo.
+2. Paste the prompt above.
+3. Let Development Coach ask a few short questions.
+4. Reuse an existing agent when possible. Create a new one only if there is a real gap.
 
-Choose your platform:
+Detailed steps: [ONBOARDING.md](./ONBOARDING.md)
 
-### 🖥️ GitHub Copilot CLI (4 Minutes)
+### 2. Admin Validation
 
-```powershell
-# Step 1: Install
-winget install GitHub.Copilot
+Use the simple admin checklist in [admin/README.md](./admin/README.md) when you need to verify agent discovery or custom agents.
 
-# Step 2: Run
-copilot
+## Platform Contract
 
-# Step 3: Login
-/login
+GRIT Hub uses one discovery model across supported environments:
 
-# Step 4: Initialize your agent
-Init & wire my new Agent <Your-Name> and Implement Learning Path, Memory System, Skills System, MCP Integration, Personality & Soul.md into copilot from https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub
-```
+- Workspace agents: `.github/agents/*.agent.md`
+- User/global custom agents: `~/.copilot/agents/*.agent.md`
+- Shared global instructions and assets: `~/.copilot/`
 
-**Example:** `Init & wire my new Agent Alex and Implement Learning Path, Memory System, Skills System, MCP Integration, Personality & Soul.md into copilot from https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub`
+`AGENTS.md` is optional reference material only. It is not required for agent discovery.
 
-**Daily Use:**
-```powershell
-# Launch Copilot CLI
-copilot
+## Setup
 
-# Initialize with your agent
-init agent Alex
-```
+### IDE / Workspace Use
 
----
-
-### 💻 IDE Copilot (VS Code/JetBrains) (2 Minutes)
-
-```powershell
-# Step 1: Clone and install
-git clone https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub.git
-cd grit-hub
+```bash
 npm install
-
-# Step 2: Reload IDE
-# Ctrl+Shift+P → "Developer: Reload Window"
-
-# Step 3: Start using
-# Open Copilot Chat → Ask: "What agents are available?"
 ```
 
----
+This runs the repo setup and populates `.github/agents`, `.github/skills`, and shared instructions.
 
-**See [ONBOARDING.md](./ONBOARDING.md) for detailed instructions.**
+If you want a smaller workspace install:
 
----
-
-## What You Get
-
-| Component | Description |
-|-----------|-------------|
-| **Agents** | Specialized role-based AI personas that can be installed all together or pulled by role/agent (e.g., Developer, Team Manager, Quality Assurance, Architect, AI Engineer, Angular Specialist) |
-| **Skills** | Reusable capabilities (e.g., memory-recall, code-review, pptx-agent, drawio, portal-generation) |
-| **Skill Picker** | Helps agents choose the fewest safe skills for the task instead of loading everything |
-| **SkillOpt** | Improves existing skills through scored trials, bounded edits, validation gates, and compact best-skill artifacts |
-| **Memory System** | Persistent knowledge across sessions (SQLite + PageIndex RAG + FTS5) |
-| **Learning Tracker** | 5-level skill progression (Novice → Master) with curriculum |
-| **MCP Integration** | Model Context Protocol servers (filesystem, web, memory, thinking, drawio) |
-| **Security** | PII protection, secret scanning, prompt-injection checks, tool least privilege, and skill supply-chain review |
-
----
-
-## Agent Roles
-
-| Role | Use Case | Example |
-|------|----------|---------|
-| **Developer** | Code review, debugging, implementation | "Review this authentication code" |
-| **Team Manager** | Team coordination, status tracking, presentations | "Generate sprint status deck" |
-| **Quality Assurance** | Test strategy, edge cases, bug reports | "Design test cases for login flow" |
-| **Architect** | System design, architecture decisions | "Design microservices architecture" |
-| **AI Engineer** | LLM agents, RAG systems, prompt engineering | "Build a RAG retrieval pipeline" |
-| **Everyone** | Daily tasks, meeting notes, leave submission, portal generation | "Submit WFH leave for tomorrow" |
-
-**+ More specialized agents** (Angular, React, Azure, AWS, API Designer, Security Auditor, etc.)
-
----
-
-## Repository Structure
-
-```
-grit-hub/
-├── agents/           # Specialized agent personas (Developer, Team Manager, Quality Assurance, etc.)
-├── skills/           # Reusable capabilities (memory, code-review, pptx, etc.)
-├── memory/           # Persistent memory system (SQLite + PageIndex)
-├── learning/         # Learning path tracker (5-level progression)
-├── mcp/              # MCP server configurations
-├── security/         # Security guardrails
-├── templates/        # Templates for new agents/skills
-├── setup.js          # Unified setup script
-└── ONBOARDING.md     # Detailed setup guide
+```bash
+node scripts/setup.js --role developer --skip-python
+node scripts/setup.js --agent fullstack-engineer --skip-python
 ```
 
----
+Then reload your IDE and start with the default prompt.
 
-## Documentation
+### Copilot CLI Use
 
-| File | Purpose |
-|------|---------|
-| [ONBOARDING.md](./ONBOARDING.md) | Platform-specific setup guides (CLI and IDE) |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | How to add new skills and agents |
-| [ROLE_GUIDE.md](./ROLE_GUIDE.md) | Role-based customization guide |
-| [PLATFORM_SUPPORT.md](./PLATFORM_SUPPORT.md) | CLI vs IDE comparison and troubleshooting |
+1. Install and sign in to Copilot CLI.
+2. Run `npm install` in this repo.
+3. Start Copilot from this repo root.
+4. Paste the default prompt.
 
----
+## What This Repo Contains
 
-## Troubleshooting
+- `agents/`: source agents grouped by role
+- `skills/`: reusable skills
+- `scripts/`: setup, cleanup, and removal entrypoints
+- `instructions/`: global Copilot instructions
+- `admin/`: simple admin validation checks
+- `tests/`: CI-only skill and security checks
 
-### CLI Issues
+## Validation
 
-| Issue | Fix |
-|-------|-----|
-| winget not found | Update Windows or install from [Microsoft Store](https://aka.ms/getwinget) |
-| /login not working | Ensure GitHub Copilot subscription is active |
-| Agent initialization fails | Check internet connection for repository access |
+Useful commands:
 
-### IDE Issues
-
-| Issue | Fix |
-|-------|-----|
-| Agents not visible | Reload IDE: Ctrl+Shift+P → "Developer: Reload Window" |
-| Copilot Chat not responding | Ensure Copilot extension is signed in |
-| Memory commands fail | Verify Python 3.10+: `python --version` |
-
-**See [ONBOARDING.md](./ONBOARDING.md) for detailed troubleshooting.**
-
----
-
-## Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
-
-**High-impact contributions:**
-- ⭐⭐⭐ New reusable **skills** (helps everyone)
-- ⭐⭐ New role-specific **agents**
-- ⭐⭐ New **learning path** curricula
-- 🛡️ New **security guardrails**
-
----
-
-## Architecture
-
-```
-┌──────────────────────────────────────────┐
-│  GitHub Copilot (CLI / VS Code / IDE)   │
-├──────────────────────────────────────────┤
-│  Agents  │  Skills  │  Instructions      │
-├──────────────────────────────────────────┤
-│  Memory System  │  Learning Tracker      │
-│  SQLite+PageIndex│  5-Level Progression  │
-├──────────────────────────────────────────┤
-│  MCP Servers (filesystem, web, memory,   │
-│  thinking, drawio)                       │
-└──────────────────────────────────────────┘
+```bash
+node scripts/setup.js --dry-run
 ```
 
----
+## More Docs
 
-## License
-
-MIT — Use it, fork it, improve it, share it.
-
----
-
-## Next Steps
-
-1. **Choose your platform:** [CLI](#-github-copilot-cli-4-minutes) or [IDE](#-ide-copilot-vs-codejetbrains-2-minutes)
-2. **Follow setup:** See Quick Start above or [ONBOARDING.md](./ONBOARDING.md)
-3. **Start using:** Your agents, skills, and memory are ready immediately
-4. **Explore:** Ask Copilot "What agents are available?" or "List all skills"
-5. **Pull only what you need:** Run `node setup.js --role developer --skip-python` or `node setup.js --agent fullstack-engineer --skip-python`
-6. **Improve existing skills:** Ask "Use SkillOpt to make this skill easier to use and validate the improvement"
-7. **Create safely:** Ask "Help me build an agent in simple language" and let the Development Coach guide reuse, skill selection, security checks, and testing
-
-Questions? See [ONBOARDING.md](./ONBOARDING.md) for examples and [CONTRIBUTING.md](./CONTRIBUTING.md) to add skills.
+- [ONBOARDING.md](./ONBOARDING.md)
+- [admin/README.md](./admin/README.md)
+- [CONTRIBUTING.md](./CONTRIBUTING.md)

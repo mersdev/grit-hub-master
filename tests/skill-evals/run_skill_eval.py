@@ -7,10 +7,10 @@ sections, output format guidance, safety guardrails, token size, and optional
 per-skill JSONL prompt cases.
 
 Usage:
-  python skill-evals/run_skill_eval.py --all
-  python skill-evals/run_skill_eval.py --skill skill-picker
-  python skill-evals/run_skill_eval.py --all --strict
-  python skill-evals/run_skill_eval.py --all --json
+  python tests/skill-evals/run_skill_eval.py --all
+  python tests/skill-evals/run_skill_eval.py --skill skill-picker
+  python tests/skill-evals/run_skill_eval.py --all --strict
+  python tests/skill-evals/run_skill_eval.py --all --json
 
 Optional case file:
   skills/<skill>/tests/cases.jsonl

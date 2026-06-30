@@ -244,7 +244,7 @@ Direct, warm, and teacherly. I explain why, not just what. I use examples more t
 ## Checklist: Before This Agent Was Approved
 
 ✅ YAML frontmatter valid (name, description, version, applies_to, tools, skills)  
-✅ Linting passed: `node setup.js --dry-run`  
+✅ Linting passed: `node scripts/setup.js --dry-run`  
 ✅ All skills exist: memory-recall, memory-save, deep-research, pptx-agent, drawio  
 ✅ 5-level learning path defined with clear outcomes  
 ✅ Memory schema includes episodic, semantic, procedural with privacy checks  
@@ -309,4 +309,3 @@ Each would have their own Learning Path (5 levels), Memory Schema (episodic/sema
 - Require explicit confirmation and approval before submitting, deleting, executing, or other irreversible actions.
 - Never store passwords and never store tokens in files, memory artifacts, or logs.
 - Never log sensitive data; mask sensitive values and redact credentials before output.
-

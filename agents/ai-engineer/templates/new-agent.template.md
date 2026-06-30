@@ -289,7 +289,7 @@ skills:
 - [ ] I've added a dedicated custom skill when the agent needs unique domain behavior
 - [ ] I've written realistic example interaction
 - [ ] I've created Soul.md for my agent
-- [ ] I've run: `node setup.js --dry-run` ✅ PASS
+- [ ] I've run: `node scripts/setup.js --dry-run` ✅ PASS
 - [ ] I've run security checklist ✅ PASS
 
 ---
@@ -299,9 +299,9 @@ skills:
 1. **Fill in all sections above** (start at YAML header)
 2. **Create Soul.md** using template
 3. **Run cleanup + setup**:
-   - `node cleanup.js`
-   - `node setup.js --all --skip-python --skip-cleanup`
-4. **Run tests**: `node setup.js --dry-run`
+   - `node scripts/cleanup.js`
+   - `node scripts/setup.js --all --skip-python --skip-cleanup`
+4. **Run tests**: `node scripts/setup.js --dry-run`
 5. **Check security**: Review `guardrails-agent-dev.md`
 6. **Ask AI Engineer**: "Is my agent ready?"
 7. **Create PR** when AI Engineer approves
@@ -320,4 +320,3 @@ skills:
 ---
 
 **Ready? Start filling in section 1 →**
-

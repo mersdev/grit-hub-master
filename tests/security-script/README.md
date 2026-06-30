@@ -9,7 +9,7 @@ These tests are strict and **hard-fail** on policy violations to block insecure 
 
 ```powershell
 # Option A: use existing virtual env (recommended)
-.\.venv\Scripts\python -m pytest security-script -v --no-cov -m security
+.\.venv\Scripts\python -m pytest tests/security-script -v --no-cov -m security
 ```
 
 If you don't have a virtual environment yet:
@@ -22,13 +22,13 @@ python -m venv .venv
 Then run:
 
 ```powershell
-.\.venv\Scripts\python -m pytest security-script -v --no-cov -m security
+.\.venv\Scripts\python -m pytest tests/security-script -v --no-cov -m security
 ```
 
 Run one scenario only:
 
 ```powershell
-.\.venv\Scripts\python -m pytest security-script\test_agent_skills_prompt_injection.py -v --no-cov -m security
+.\.venv\Scripts\python -m pytest tests/security-script\test_agent_skills_prompt_injection.py -v --no-cov -m security
 ```
 
 ---

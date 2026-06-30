@@ -1,504 +1,103 @@
 # Onboarding Guide
 
-Get up and running with GRIT Hub framework. Choose your platform below.
+GRIT Hub has one default onboarding path for end users and a simple admin checklist in `admin/`.
 
----
+## Default Prompt
 
-## Choose Your Platform
-
-Non-technical starting point:
+Start here if you are not sure which agent, skill, or folder you need:
 
 ```text
 I want an AI helper for my team. Ask me simple questions and recommend whether to reuse, improve, or create an agent.
 ```
 
-Use the Development Coach when you do not know the right agent, skill, folder, or setup command. It will translate your work problem into simple choices.
+This routes through Development Coach. It should keep the conversation in plain language and prefer reuse before creation.
 
-Already know your role? Pull only what you need:
+## Non-Technical User Journey
 
-```powershell
-node setup.js --role developer --skip-python
-node setup.js --role quality-assurance --skip-python
-node setup.js --agent fullstack-engineer --skip-python
+### IDE
+
+1. Open this repo.
+2. Run `npm install`.
+3. Reload your IDE.
+4. Open Copilot Chat.
+5. Paste the default prompt.
+
+If you only want one role or one agent in the workspace:
+
+```bash
+node scripts/setup.js --role developer --skip-python
+node scripts/setup.js --agent fullstack-engineer --skip-python
 ```
 
-- **[GitHub Copilot CLI](#github-copilot-cli-setup)** — Command-line interface (4 minutes)
-- **[IDE Copilot (VS Code/JetBrains)](#ide-copilot-setup)** — Integrated development environment (2 minutes)
+### Copilot CLI
 
----
+1. Install and sign in to Copilot CLI.
+2. Open a terminal in this repo.
+3. Run `npm install`.
+4. Start `copilot`.
+5. Paste the default prompt.
 
-# GitHub Copilot CLI Setup
+### What Should Happen
 
-Get your personalized GitHub Copilot agent running in 4 minutes with Learning Path, Memory System, Skills, MCP servers, and custom Personality & Soul.
+- The first response should ask a few simple intake questions.
+- The system should recommend reuse, improve, or create new.
+- You should not need to know agent names up front.
 
-## Prerequisites
+## Discovery Model
 
-Before starting, ensure you have:
-- ✅ **Windows 10/11** — For winget package manager
-- ✅ **GitHub account with Copilot access** — Required for Copilot CLI
+Use these locations consistently:
 
----
+- Workspace agents: `.github/agents/*.agent.md`
+- User/global custom agents: `~/.copilot/agents/*.agent.md`
+- Shared global instructions and assets: `~/.copilot/`
 
-## Step-by-Step Setup
+`AGENTS.md` is optional documentation. It is not part of the required discovery path.
 
-### Step 1: Install GitHub Copilot CLI (30 seconds)
+## Quick Verification
 
-```powershell
-# Install GitHub Copilot CLI using Windows Package Manager
-winget install GitHub.Copilot
+### End User Check
+
+Ask:
+
+```text
+I want an AI helper for my team. Ask me simple questions and recommend whether to reuse, improve, or create an agent.
 ```
 
-**What this installs:**
-- ✅ `copilot` command-line tool
-- ✅ Integration with Windows Terminal
+Success looks like:
 
-**Verify installation:**
-```powershell
-copilot --version
+- Development Coach behavior
+- plain-language questions
+- reuse before create
+
+### Workspace Check
+
+Ask:
+
+```text
+What agents are available in this workspace? Group them by role and tell me the default starting point.
 ```
 
----
+Success looks like:
 
-### Step 2: Run Copilot CLI (30 seconds)
+- agents grouped by role
+- Development Coach identified as the front door
 
-```powershell
-# Launch Copilot CLI in interactive mode
-copilot
-```
+## Troubleshooting
 
-This opens the interactive Copilot CLI session.
+### Agents not showing in the IDE
 
----
+1. Run `node scripts/setup.js --dry-run` and confirm it references `.github/agents`.
+2. Reload the IDE window.
+3. Ask Copilot to list available workspace agents again.
 
-### Step 3: Login Copilot CLI
+### CLI not picking up shared assets
 
-Within the Copilot CLI interactive session:
+1. Confirm `~/.copilot/copilot-instructions.md` exists.
+2. Confirm `~/.copilot/skills/` exists.
+3. Restart Copilot CLI from the repo root.
 
-```
-/login
-```
+## Next Step
 
-Follow the prompts:
-- ✅ Select Github Enterprise (https://dhl.ghe.com/)
-- ✅ Browser will open for authentication
-- ✅ Sign in with your GitHub account that has Copilot access
-- ✅ Authorize the device
+Go back to the default prompt and keep the flow simple: reuse first, improve second, create last.
 
-**Verify login:** You should see confirmation in the CLI that you're logged in successfully.
-
----
-
-### Step 4: Setup Your Personal Agent
-
-Now tell Copilot to initialize and wire your personal agent with all the agent systems from the repository.
-
-**In the Copilot CLI interactive session, type:**
-
-```
-Init & wire my new Agent <Personal-Agent-Name> and Implement Learning Path, Memory System, Skills System, MCP Integration, Personality & Soul.md into copilot from https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub
-```
-
-**Example:**
-```
-Init & wire my new Agent Alex and Implement Learning Path, Memory System, Skills System, MCP Integration, Personality & Soul.md into copilot from https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub
-```
-
-**What Copilot will do:**
-1. ✅ Clone the agent repository
-2. ✅ Install core systems (Learning Path, Memory, Skills, MCP)
-3. ✅ Configure your personal agent with your chosen name
-4. ✅ Set up Personality & Soul from the repository
-5. ✅ Wire all systems together
-6. ✅ Make your agent ready to use
-
-**The process takes about 2 minutes.** Copilot will guide you through any additional configuration needed.
-
-**What gets installed:**
-
-**Core Systems (~/.copilot/):**
-- ✅ **Learning Path** — 5-level skill progression tracker
-- ✅ **Memory System** — SQLite + PageIndex + FTS5 full-text search
-- ✅ **Skills Library** — reusable capabilities for common work
-- ✅ **Skill Picker** — chooses the fewest safe skills for each task
-- ✅ **SkillOpt** — improves existing skills through scored trials, bounded edits, validation gates, and compact best-skill artifacts
-- ✅ **MCP Servers** — 5 Model Context Protocol integrations
-- ✅ **PPTX Agent** — DHL-branded presentation generation
-
-**Agents & Persona:**
-- ✅ **57 Specialized Agents** — Developer, Team Manager, Quality Assurance, Architect, AI Engineer, Everyone
-- ✅ **Personality & Soul** — Customizable agent behaviors and tone
-- ✅ **Security Guardrails** — PII protection, secret scanning, compliance
-
----
-
-## ✅ Verify CLI Setup
-
-After completing the 4 steps above, verify everything is working:
-
-### Check Your Agent is Ready
-
-Within the Copilot CLI interactive session, ask:
-
-```
-What is my agent name and what systems do I have access to?
-```
-
-Your agent should respond with:
-- ✅ Your personal agent name (e.g., "Alex")
-- ✅ List of systems: Learning Path, Memory System, Skills, MCP, Personality & Soul
-- ✅ Available agents (e.g., Developer, Team Manager, Quality Assurance, Architect, AI Engineer, etc.)
-- ✅ Available skills (e.g., memory-recall, code-review, pptx-agent, drawio, portal-generation, etc.)
-
-### Test Agent Systems
-
-Within the Copilot CLI interactive session:
-
-```
-# Test Memory System
-Remember that our API base URL is https://api.internal.dhl.com
-
-# Test Learning Tracker
-What's my current skill level in Python?
-
-# Test Skills
-List all available skills
-
-# Test Skill Picker
-Which skill should I use to create a project status slide?
-
-# Test SkillOpt
-Use SkillOpt to improve a skill that is hard for non-technical users and show the validation gate.
-
-# Test Agents
-Show me all available agents organized by role
-```
-
----
-
-## 🚀 Using Your CLI Agent
-
-### Daily Workflow
-
-**Start Copilot CLI and initialize with your agent:**
-```powershell
-# Launch Copilot CLI
-copilot
-
-# Initialize with your personal agent
-init agent Alex
-```
-
-You're now in the interactive Copilot session with your personal agent loaded!
-
-### Example Interactions
-
-Within the Copilot CLI interactive session:
-
-```
-# Ask your agent about itself
-What agents and skills are available?
-
-# Use memory system
-Remember that our API base URL is https://api.internal.dhl.com
-What do you remember about our API?
-
-# Track learning progress
-I just learned how to implement OAuth2. Update my learning tracker.
-What should I learn next based on my progress?
-
-# Use your agent for different roles
-Review my authentication code
-Design test cases for the login flow
-Generate a sprint status deck
-
-# Generate presentations
-Create a 10-slide presentation about our Q2 roadmap
-
-# Create diagrams
-Draw a system architecture diagram for our microservices
-```
-
-### Daily Workflow Pattern
-
-**Morning:**
-```
-copilot
-init agent Alex
-What did I work on yesterday? What's on my plate today?
-```
-
-**During Work:**
-```
-# Your agent has context across all sessions via memory system
-Using my past decisions about authentication, recommend an approach for this new service
-```
-
-**End of Day:**
-```
-Save today's key decisions and learnings to memory
-```
-
----
-
-## 📚 What Your CLI Agent Can Do
-
-✅ **Specialized Sub-Agents**
-- Developer, Team Manager, Quality Assurance, Architect, Project Manager, Consultant, Support, AI Engineer, Agent Builder, Everyone, and more
-
-✅ **Skills**
-- Memory recall & save, Learning tracker, Code review, Deep research, PPTX presentations, draw.io diagrams, portal generation, skill picking, and more
-
-✅ **Persistent Memory System**
-- Save facts, events, workflows across sessions
-- Hierarchical search with PageIndex
-- Full-text search with FTS5
-
-✅ **Learning Tracker**
-- Track your skill progression (5 levels: Novice → Master)
-- Get personalized recommendations based on your role
-- Curriculum-driven learning paths
-
-✅ **MCP Servers**
-- Filesystem access, Web fetch, Memory system, Sequential thinking, draw.io integration, and more
-
-✅ **Your Custom Personality & Soul**
-- Unique agent name and persona
-- Role-specific behaviors and tone
-- Adaptive responses based on your preferences
-
----
-
-## ❓ CLI Troubleshooting
-
-| Issue | Fix |
-|-------|-----|
-| **"winget not found"** | Update Windows: Settings → Windows Update. Or install from [Microsoft Store](https://aka.ms/getwinget) |
-| **"GitHub.Copilot not found"** | Try: `winget install --id GitHub.Copilot` or install from [GitHub Copilot CLI releases](https://github.com/github/gh-copilot/releases) |
-| **"/login command not working"** | Ensure you have GitHub Copilot subscription on your account. Try typing `/help` in Copilot CLI |
-| **"Agent initialization fails"** | Check internet connection. Copilot needs to clone the repository from https://dhl.ghe.com/ |
-| **"Cannot access repository"** | Ensure you have access to DHL Git Enterprise. Check with your team admin |
-| **"Copilot doesn't remember my name"** | Re-run Step 4 with the initialization command |
-| **"Skills not working"** | Ask copilot: "What skills do I have?" and verify the response lists 52+ skills |
-
----
-
-# IDE Copilot Setup
-
-Get GRIT Hub framework running in VS Code, JetBrains, or other IDEs in 2 minutes.
-
-## Prerequisites
-
-Before starting, ensure you have:
-- ✅ **Git** — To clone the repository
-- ✅ **Node.js 16+** — For setup scripts
-- ✅ **npm** — Node package manager (comes with Node.js)
-- ✅ **Python 3.10+** — For memory and learning systems
-- ✅ **GitHub Copilot extension** — Installed and signed in in your IDE
-- ✅ **Git Personal Access Token (PAT)** — For authentication to DHL Git
-
----
-
-## Step-by-Step Setup
-
-### Step 0: Setup Git Credentials (1 minute — First Time Only)
-
-If this is your first time using DHL Git on this machine:
-
-**Double-click `setup-login.bat`** in the repository root (or run `bash setup-login.sh` on Linux/Mac).
-
-**You only need to do this once per machine.** Skip to Step 1 if you already have Git PAT configured.
-
----
-
-### Step 1: Clone Repository (30 seconds)
-
-```powershell
-git clone https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub.git
-cd grit-hub
-```
-
----
-
-### Step 2: Run npm install (1 minute)
-
-```powershell
-npm install
-```
-
-**This automatically runs `node setup.js --all` as a postinstall hook and installs everything:**
-
-**Global Installation (~/.copilot/):**
-- ✅ Memory system (SQLite + PageIndex)
-- ✅ Learning tracker (skill progression)
-- ✅ Skills library (code-review, deep-research, etc.)
-- ✅ MCP servers config
-- ✅ PPTX agent
-- ✅ Boot script (for CLI compatibility)
-
-**Project Installation (.github/):**
-- ✅ Specialized agents (Developer, Team Manager, Quality Assurance, Architect, Consultant, Support, AI Engineer, Project Manager, Agent Builder, Everyone, and more)
-- ✅ Optional role pull: `node setup.js --role developer --skip-python`
-- ✅ Optional single-agent pull: `node setup.js --agent fullstack-engineer --skip-python`
-- ✅ Skills (memory-recall, code-review, pptx-agent, drawio, portal-generation, and more)
-- ✅ Security guardrails
-- ✅ Instructions and AGENTS.md
-
-**Note:** If you prefer manual setup instead of npm install, you can run `node setup.js --all` directly at any time.
-
----
-
-### Step 3: Reload IDE and Use Agents (30 seconds)
-
-**VS Code:**
-- Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
-- Search for "Developer: Reload Window" and press Enter
-- Wait for IDE to reload (5-10 seconds)
-- Open Copilot Chat (Ctrl+I or Cmd+I)
-- Ask: "What agents are available?"
-
-**JetBrains IDEs:**
-- File → Invalidate Caches / Restart → Invalidate and Restart
-- Wait for IDE to restart
-- Open Copilot tool window
-- Ask: "What agents are available?"
-
----
-
-## ✅ Verify IDE Setup
-
-After completing the 3 steps above, verify everything is working:
-
-### Check Global Installation
-```powershell
-ls "$env:USERPROFILE\.copilot" | Select-Object Name
-```
-
-Should show: `agent_boot.py`, `copilot-instructions.md`, `learning`, `memory`, `mcp.json`, `pptx`, `skills`
-
-### Check Project Installation
-```powershell
-ls ".github" | Select-Object Name
-```
-
-Should show: `agents`, `instructions`, `security`, `skills`
-
-✅ If both above commands show files/folders → **IDE Setup is complete!**
-
----
-
-## 🚀 Using IDE Agents
-
-### In VS Code / IDE Copilot Chat
-
-Simply ask in Copilot Chat:
-```
-What agents are available?
-```
-
-Or use specific agent capabilities:
-```
-Review my authentication code
-Design a microservices architecture
-Create a status report
-```
-
-### Example Interactions
-
-```
-# General questions
-Which agent capabilities can help me review code?
-
-# Use your agent for different tasks
-Explain this function
-Design a microservices architecture
-Create a status report
-
-# Memory system (shared with CLI)
-Remember that our API uses JWT authentication
-What do you remember about our API?
-
-# Learning tracking
-I just learned React Hooks. Update my progress.
-What should I learn next?
-```
-
----
-
-## 📚 What You Get (Both Platforms)
-
-✅ **57 Specialized Role-Based Agents**
-- Developer, Team Manager, Quality Assurance, Architect, Project Manager, Consultant, Support, AI Engineer, Agent Builder, Everyone
-
-✅ **52 Shared Skills**
-- Memory recall & save, Learning tracker, Code review, Deep research, PPTX presentations, draw.io diagrams
-
-✅ **Persistent Memory System**
-- Save facts, events, workflows across sessions
-- Hierarchical search with PageIndex
-- Works across both CLI and IDE
-
-✅ **Learning Tracker**
-- Track your skill progression
-- Get personalized recommendations
-- Synced between CLI and IDE
-
-✅ **MCP Servers**
-- Filesystem access, Web fetch, Memory system, Sequential thinking, draw.io integration, and more
-
----
-
-## ❓ IDE Troubleshooting
-
-| Issue | Fix |
-|-------|-----|
-| **"Node.js not found"** | Install from [nodejs.org](https://nodejs.org) |
-| **"Python not found"** | Install from [python.org](https://python.org) — ensure version 3.10+ |
-| **"Agents not visible in IDE"** | Reload IDE: `Ctrl+Shift+P` → "Developer: Reload Window" |
-| **"Memory commands fail"** | Verify Python installed: `python --version` |
-| **"setup.js fails"** | Run with: `node setup.js --all --skip-python` to skip Python deps |
-| **"Copilot Chat not responding"** | Ensure Copilot extension is signed in (check status in IDE) |
-| **".github/ folder not created?"** | This is NORMAL! `.github/` is created by setup.js --all for IDE discovery |
-
----
-
-## 📖 Next Steps
-
-1. **Customize your agent:** Edit `~/.copilot/copilot-instructions.md` to refine your agent's personality
-2. **Explore skills:** Ask in Copilot CLI: `List all available skills and what they do`
-3. **Learn the systems:**
-   - Memory: See `memory/README.md` for advanced memory operations
-   - Learning: See `learning/README.md` for skill progression tracking
-   - MCP: See `mcp/README.md` for Model Context Protocol integration
-4. **Browse agents:** Ask: `Show me all available agents organized by role` or check `instructions/AGENTS.md`
-5. **Pull a role only:** Run `node setup.js --role developer --skip-python`
-6. **Pull one agent only:** Run `node setup.js --agent fullstack-engineer --skip-python`
-7. **Generate portal:** Try the portal generator: `@portal-generator create a portal for my agents`
-8. **Contribute:** See [CONTRIBUTING.md](./CONTRIBUTING.md) to add your own skills or agents
-
----
-
-## 🎯 Quick Verification Checklist
-
-### CLI Setup Checklist
-
-- [ ] `winget install GitHub.Copilot` completed successfully
-- [ ] Launched Copilot CLI with `copilot` command
-- [ ] Logged in using `/login` within Copilot CLI
-- [ ] Initialized agent with Step 4 command
-- [ ] Copilot responds with your personal agent name when asked
-- [ ] Memory system works: Ask "Remember that my favorite color is blue"
-- [ ] Learning tracker works: Ask "What's my current skill level in Python?"
-- [ ] Skills work: Ask "List all available skills"
-
-### IDE Setup Checklist
-
-- [ ] `npm install` completed without errors
-- [ ] `~/.copilot/` directory exists with: `memory/`, `learning/`, `skills/`, `pptx/`, `copilot-instructions.md`
-- [ ] `.github/` directory exists with: `agents/`, `skills/`, `security/`, `instructions/`
-- [ ] IDE reloaded successfully
-- [ ] Copilot Chat responds to agent questions
-- [ ] Memory system works: Ask "Remember that X" in Copilot Chat
-
----
-
-**Ready?** Choose your platform above and you'll be up and running in minutes! 🚀
+If you are validating the repo, use [admin/README.md](./admin/README.md).

@@ -117,8 +117,8 @@ These checks are SkillSpector-style controls for prompt injection, data exfiltra
 - [ ] **Skills exist** — All listed skills are documented in `skills/` folder
   - Test: `ls ~/.copilot/skills/ | grep <skill-name>`
 
-- [ ] **Setup test passes** — `node setup.js --dry-run` completes without errors
-  - Test: Run `node setup.js --dry-run` in the repo root
+- [ ] **Setup test passes** — `node scripts/setup.js --dry-run` completes without errors
+  - Test: Run `node scripts/setup.js --dry-run` in the repo root
 
 ---
 
@@ -146,7 +146,7 @@ These checks are SkillSpector-style controls for prompt injection, data exfiltra
 - [ ] No PII or secrets in agent description or examples
 - [ ] Role is clearly documented
 - [ ] Guardrails section is not removed or weakened
-- [ ] Passes `node setup.js --dry-run` without errors
+- [ ] Passes `node scripts/setup.js --dry-run` without errors
 - [ ] Description explains what the agent does and who benefits
 - [ ] At least one example interaction is provided
 - [ ] Skill supply-chain review is complete for any new or external skill

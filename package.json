@@ -1,22 +1,19 @@
 {
   "name": "grit-hub",
   "version": "1.0.0",
-  "description": "Standardised AI agent starter kit for GitHub Copilot CLI — memory, learning, skills, MCP, PPTX, drawio. One-command setup for any role.",
-  "main": "setup.js",
+  "description": "Custom Copilot agent repo with shared skills, instructions, and admin validation.",
+  "main": "scripts/setup.js",
   "bin": {
-    "copilot-setup": "setup.js"
+    "copilot-setup": "scripts/setup.js"
   },
   "scripts": {
-    "agent-catalog:generate": "node agents/ai-engineer/generate-agent-catalog.js",
-    "agent-catalog:check": "node agents/ai-engineer/generate-agent-catalog.js --check",
-    "agent:remove": "node remove-agent.js",
-    "copilot:memory:clear": "node cleanup-copilot-memory.js",
-    "agent:sync": "node cleanup.js && node setup.js --all --skip-python --skip-cleanup",
-    "postinstall": "node setup.js --all",
-    "setup": "node setup.js",
-    "setup:dry": "node setup.js --dry-run",
-    "setup:all": "node setup.js --all",
-    "test": "node setup.js --dry-run"
+    "agent:remove": "node scripts/remove-agent.js",
+    "agent:sync": "node scripts/cleanup.js && node scripts/setup.js --all --skip-python --skip-cleanup",
+    "postinstall": "node scripts/setup.js --all",
+    "setup": "node scripts/setup.js",
+    "setup:dry": "node scripts/setup.js --dry-run",
+    "setup:all": "node scripts/setup.js --all",
+    "test": "node scripts/setup.js --dry-run"
   },
   "dependencies": {
     "playwright": "^1.40.0",
@@ -26,14 +23,9 @@
     "copilot",
     "ai-agent",
     "skills",
-    "memory",
-    "learning",
-    "mcp",
-    "pptx",
-    "drawio",
     "github-copilot",
-    "developer-tools",
-    "dhl"
+    "custom-agents",
+    "developer-tools"
   ],
   "author": "CDCP Copilot Team",
   "license": "MIT",

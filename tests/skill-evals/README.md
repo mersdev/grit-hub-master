@@ -16,14 +16,14 @@ The evaluator checks every `skills/<skill>/SKILL.md` for:
 ## Run all skills
 
 ```bash
-python skill-evals/run_skill_eval.py --all
+python tests/skill-evals/run_skill_eval.py --all
 ```
 
 ## Run one skill
 
 ```bash
-python skill-evals/run_skill_eval.py --skill skill-picker
-python skill-evals/run_skill_eval.py --skill skillopt
+python tests/skill-evals/run_skill_eval.py --skill skill-picker
+python tests/skill-evals/run_skill_eval.py --skill skillopt
 ```
 
 ## Strict readiness gate
@@ -31,7 +31,7 @@ python skill-evals/run_skill_eval.py --skill skillopt
 Use this before release when you want every skill to be production-ready.
 
 ```bash
-python skill-evals/run_skill_eval.py --all --strict
+python tests/skill-evals/run_skill_eval.py --all --strict
 ```
 
 Strict mode requires every skill to score at least 85 and have no critical findings.
@@ -41,7 +41,7 @@ Strict mode requires every skill to score at least 85 and have no critical findi
 Default mode fails only for critical findings or scores below 70.
 
 ```bash
-python skill-evals/run_skill_eval.py --all --min-score 70
+python tests/skill-evals/run_skill_eval.py --all --min-score 70
 ```
 
 ## Optional prompt cases
@@ -71,14 +71,14 @@ This is a lightweight trigger approximation. It does not replace real LLM eval, 
 ## Recommended release checklist
 
 ```bash
-node setup.js --dry-run --skip-python
+node scripts/setup.js --dry-run --skip-python
 git diff --check
-python skill-evals/run_skill_eval.py --all --min-score 70
-/tmp/grit-hub-venv/bin/python -m pytest security-script -q
+python tests/skill-evals/run_skill_eval.py --all --min-score 70
+/tmp/grit-hub-venv/bin/python -m pytest tests/security-script -q
 ```
 
 For high-confidence release:
 
 ```bash
-python skill-evals/run_skill_eval.py --all --strict
+python tests/skill-evals/run_skill_eval.py --all --strict
 ```

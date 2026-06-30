@@ -147,10 +147,10 @@ Only create or edit files after the user approves the draft.
 Run validation after the user approves generation or asks for testing:
 
 ```bash
-node cleanup.js
-node setup.js --all --skip-python --skip-cleanup
-node setup.js --dry-run
-node agents/ai-engineer/generate-agent-catalog.js
+node scripts/cleanup.js
+node scripts/setup.js --all --skip-python --skip-cleanup
+node scripts/setup.js --dry-run
+node scripts/setup.js --dry-run
 ```
 
 Report in this format:
@@ -333,7 +333,7 @@ Use `skill-picker`:
 - Names use lowercase kebab-case for folders and files.
 - Frontmatter must include `name`, `description`, `version`, `applies_to`, `tools`, and `skills` for agents.
 - Skill references must match existing `skills/<name>/SKILL.md` folders.
-- If the agent catalog changed, regenerate it with `node agents/ai-engineer/generate-agent-catalog.js`.
+- If agent files changed, run `node scripts/setup.js --dry-run` and `npm run agent:sync` before handoff.
 
 ## Contribution Flow
 

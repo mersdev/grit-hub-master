@@ -1,17 +1,15 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
-const { AGENTS_ROOT, REPO_ROOT } = require("./agents/ai-engineer/lib/agent-routing");
+const { AGENTS_ROOT, REPO_ROOT } = require(path.join(__dirname, "..", "agents", "ai-engineer", "lib", "agent-routing"));
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
-const skipCatalog = args.includes("--skip-catalog");
 const target = args.find((arg) => !arg.startsWith("--"));
 
 function usage() {
   console.error(
-    "Usage: node remove-agent.js <agent-slug|role/agent-name|path/to/agent.agent.md> [--dry-run] [--skip-catalog]"
+    "Usage: node scripts/remove-agent.js <agent-slug|role/agent-name|path/to/agent.agent.md> [--dry-run]"
   );
 }
 
@@ -174,23 +172,6 @@ function resolveMirrorAgent(input) {
   return null;
 }
 
-function runCatalogGeneration() {
-  if (dryRun) {
-    console.log("[dry-run] would regenerate agent catalog");
-    return;
-  }
-
-  const result = spawnSync("node", ["agents/ai-engineer/generate-agent-catalog.js"], {
-    cwd: REPO_ROOT,
-    stdio: "inherit",
-    shell: false,
-  });
-
-  if (result.status !== 0) {
-    process.exit(result.status || 1);
-  }
-}
-
 function main() {
   if (!target) {
     usage();
@@ -237,12 +218,6 @@ function main() {
     cleanupEmptyParents(path.dirname(sourcePath), AGENTS_ROOT);
   }
   cleanupEmptyParents(path.dirname(mirrorPath), path.join(REPO_ROOT, ".github"));
-
-  if (!skipCatalog) {
-    runCatalogGeneration();
-  } else {
-    console.log("Skipping catalog regeneration because --skip-catalog was provided.");
-  }
 
   console.log(
     dryRun

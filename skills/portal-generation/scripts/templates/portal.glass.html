@@ -614,7 +614,7 @@ function openModal(x){modal.classList.remove('getting-started');const rc=ROLES[x
 function closeModal(){overlay.classList.remove('show');modal.classList.remove('getting-started');document.body.style.overflow='';}
 overlay.onclick=e=>{if(e.target===overlay)closeModal();};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-document.getElementById('fab').onclick=()=>openModal({name:'Getting Started',emoji:'🧭',role:'Everyone',author:'GRIT Hub Team',desc:'Ready to kick off? Pick your lane, take the first challenge, and unlock momentum fast.',skills:[],tools:[],capabilities:[],useCases:[],days:5,isSkill:false,gettingStarted:{cli:['Install GitHub Copilot CLI: winget install GitHub.Copilot','Launch Copilot CLI in your terminal: copilot','Login to GitHub Enterprise: type /login → select https://dhl.ghe.com/ → authenticate in browser','Setup your personal agent: Init & wire my new Agent <Your-Name> and Implement Learning Path, Memory System, Skills System, MCP Integration, Personality & Soul.md into copilot from https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub','Verify setup: ask — What is my agent name and what systems do I have access to?'],ide:['(First-time only) Configure Git credentials: double-click setup-login.bat in the repo root','Clone the repository: git clone https://dhl.ghe.com/SMP-Mobile-Customer-Data-Domai/grit-hub.git && cd grit-hub','Install all systems: npm install (auto-installs Memory, Skills, Agents, MCP, Learning Tracker & more)','Reload VS Code: Ctrl+Shift+P → Developer: Reload Window (or restart JetBrains)','Open Copilot Chat (Ctrl+I) and ask: What agents are available?','Start using agents: Review my code · Design architecture · Create a status report']},githubUrl:META.repoUrl?META.repoUrl+'/blob/master/ONBOARDING.md':''});
+document.getElementById('fab').onclick=()=>openModal({name:'Getting Started',emoji:'🧭',role:'Everyone',author:'GRIT Hub Team',desc:'Start with one plain-language prompt and let Development Coach route you.',skills:[],tools:[],capabilities:[],useCases:[],days:5,isSkill:false,gettingStarted:{cli:['Install and sign in to GitHub Copilot CLI','Open this repository in your terminal','Run: npm install','Launch Copilot from the repo root: copilot','Paste: I want an AI helper for my team. Ask me simple questions and recommend whether to reuse, improve, or create an agent.'],ide:['Clone the repository and open it in your IDE','Run: npm install','Reload VS Code or JetBrains','Open Copilot Chat','Paste the same Development Coach prompt to start']},githubUrl:META.repoUrl?META.repoUrl+'/blob/master/ONBOARDING.md':''});
 
 function animateCounts(){document.querySelectorAll('.num').forEach(el=>{const t=+el.dataset.count;let s=0;const step=Math.max(1,t/40);const iv=setInterval(()=>{s+=step;if(s>=t){s=t;clearInterval(iv);}el.textContent=Math.floor(s);},22);});}
 function fillBars(){document.querySelectorAll('.bar-fill').forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',300+i*90));}
@@ -642,7 +642,6 @@ tb.onclick=()=>{dark=!dark;root.setAttribute('data-theme',dark?'dark':'light');t
 </script>
 </body>
 </html>
-
 
 
 

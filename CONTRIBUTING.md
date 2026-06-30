@@ -17,11 +17,11 @@ The coach will recommend whether to reuse, improve, or create something new befo
 1. **Pick what to add** (in order of team impact):
    - A new **skill** (`skills/<name>/SKILL.md`) — highest leverage, helps everyone
    - A new **agent** (`agents/<role>/<name>.agent.md`) — role-specific persona
-   - A new **learning path** (update `learning/learning_manager.py`)
-   - A new **prompt** or **chatmode**
+   - A new **instruction** or **prompt**
+   - A new **chatmode**
 2. **Branch** off `main`: `feat/<your-name>-<short-slug>`
 3. **Use a template** from `templates/` — copy and adapt
-4. **Test** that `node setup.js --dry-run` still works
+4. **Test** that `node scripts/setup.js --dry-run` still works
 5. **Open a PR** — describe what it does and who benefits
 6. **Ship it** — once merged, announce in Teams so the team can adopt it
 
@@ -33,13 +33,10 @@ The coach will recommend whether to reuse, improve, or create something new befo
 |-----------------|-----------|-------------|
 | Reusable capability (any role) | `skills/<name>/SKILL.md` | YAML frontmatter + markdown |
 | Role-specific persona | `agents/<role>/<name>.agent.md` | YAML frontmatter + markdown |
-| Security guardrail | `security/<name>.md` | YAML frontmatter + markdown |
-| Shared context (glossary, stack) | `memory/<name>.memory.md` | YAML frontmatter + markdown |
 | Code/style standards | `instructions/<name>.md` | Markdown |
 | One-shot prompt | `prompts/<name>.prompt.md` | Markdown |
 | Chat mode | `chatmodes/<name>.chatmode.md` | YAML frontmatter + markdown |
-| MCP server config | `mcp/mcp.json` | JSON (add to mcpServers) |
-| Python tool/script | `scripts/<name>.py` | Python |
+| Repo script | `scripts/<name>.{js,py,sh}` | JavaScript, Python, or shell |
 
 **Rule of thumb**: if more than one role would use it → it's a skill. If it's persona-specific → it's an agent.
 
@@ -81,8 +78,7 @@ Before opening a PR:
 - [ ] File follows the template structure
 - [ ] Description is clear enough for Copilot to auto-trigger
 - [ ] Skill list is short and relevant; no "just in case" skills
-- [ ] External skills or dependencies have source, maintenance, permission, and security review
-- [ ] `node setup.js --dry-run` still works
+- [ ] `node scripts/setup.js --dry-run` still works
 - [ ] No personal data, secrets, or PII in the file
 - [ ] README in the skill/agent folder if non-trivial
 
@@ -92,11 +88,11 @@ Before opening a PR:
 
 ```bash
 # Verify setup still works
-node setup.js --dry-run
+node scripts/setup.js --dry-run
 
 # Test your skill manually
 # 1. Run setup to install to ~/.copilot/skills/ and .github/skills/
-node setup.js --all --skip-python
+node scripts/setup.js --all --skip-python
 # 2. Start a new Copilot session
 # 3. Ask Copilot something that should trigger your skill
 # 4. Verify it uses the skill's behaviour

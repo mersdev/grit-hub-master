@@ -4,7 +4,6 @@ const path = require("path");
 const REPO_ROOT = path.resolve(__dirname, "../../..");
 const AGENTS_ROOT = path.join(REPO_ROOT, "agents");
 const SKILLS_ROOT = path.join(REPO_ROOT, "skills");
-const CATALOG_PATH = path.join(REPO_ROOT, ".github", "agent-catalog.json");
 
 function exists(p) {
   return fs.existsSync(p);
@@ -323,32 +322,15 @@ function findBestAgent(query, agents, options = {}) {
   return ranked.length > 0 ? ranked[0] : null;
 }
 
-function loadCatalog() {
-  return {
-    agents: collectGeneratedAgentFiles(),
-    skills: collectSkills(),
-  };
-}
-
-function writeCatalog(catalog = loadCatalog()) {
-  const payload = `${JSON.stringify(catalog, null, 2)}\n`;
-  fs.mkdirSync(path.dirname(CATALOG_PATH), { recursive: true });
-  fs.writeFileSync(CATALOG_PATH, payload, "utf8");
-  return CATALOG_PATH;
-}
-
 module.exports = {
   AGENTS_ROOT,
-  CATALOG_PATH,
   REPO_ROOT,
   SKILLS_ROOT,
   canonicalAgentName,
   collectGeneratedAgentFiles,
   collectSkills,
   findBestAgent,
-  loadCatalog,
   normalize,
   rankAgents,
   tokenize,
-  writeCatalog,
 };

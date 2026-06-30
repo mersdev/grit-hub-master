@@ -69,7 +69,7 @@ You are a **[role description]** with deep expertise in:
 4. **Keep** the Guardrails section as-is (mandatory for all agents)
 5. **Add/remove** skills based on what your role uses; keep the list short and explain why each skill is needed
 6. **Add** one simple test prompt a non-technical user can try
-7. **Test** with `node setup.js --dry-run`
+7. **Test** with `node scripts/setup.js --dry-run`
 8. **Place in** `agents/<role>/<agent-name>.agent.md`
 
 ## Example: Developer Agent
@@ -80,6 +80,5 @@ See `agents/developer/fullstack-engineer.agent.md` for a full working example.
 
 - Read the Developer example: `agents/developer/fullstack-engineer.agent.md`
 - See security guidelines: `security/guardrail-checklist.md`
-- Review skill descriptions: `instructions/AGENTS.md`
+- Review the admin validation guide: `admin/README.md`
 - Contributing guide: `CONTRIBUTING.md`
-
