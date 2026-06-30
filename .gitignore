@@ -25,6 +25,7 @@ decks/
 out/
 package-lock.json
 
-# Copilot IDE discovery folder (per-user, don't commit)
-.github/
+# Copilot IDE discovery folder (per-user, don't commit), except committed CI workflows
+.github/*
 !.github/workflows/
+!.github/workflows/**
