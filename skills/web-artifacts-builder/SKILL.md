@@ -6,6 +6,18 @@ license: Complete terms in LICENSE.txt
 
 # Web Artifacts Builder
 
+Use this skill when the user asks to create, build, bundle, test, or share a complex interactive HTML artifact that needs React, TypeScript, Tailwind CSS, shadcn/ui components, routing, or state management. Do not use it for simple single-file HTML or static copy.
+
+## Output Format
+
+Return a short implementation summary with:
+
+- artifact purpose
+- files created or changed
+- how to run or preview
+- how to bundle into one HTML file
+- testing status and any known limitations
+
 To build powerful frontend claude.ai artifacts, follow these steps:
 1. Initialize the frontend repo using `scripts/init-artifact.sh`
 2. Develop your artifact by editing the generated code

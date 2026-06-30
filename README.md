@@ -6,6 +6,24 @@ A team-ready AI agent framework for GitHub Copilot with persistent memory, learn
 
 ## Quick Start
 
+Not technical? Start with this prompt:
+
+```text
+I want an AI helper for my team. Ask me simple questions and recommend whether to reuse, improve, or create an agent.
+```
+
+GRIT Hub will guide you in plain language, pick the smallest safe skill set, and avoid creating new agents when an existing one already works.
+
+Want only one role instead of everything?
+
+```powershell
+# Pull only Developer agents into .github/agents
+node setup.js --role developer --skip-python
+
+# Pull only one specific agent
+node setup.js --agent fullstack-engineer --skip-python
+```
+
 Choose your platform:
 
 ### 🖥️ GitHub Copilot CLI (4 Minutes)
@@ -62,12 +80,14 @@ npm install
 
 | Component | Description |
 |-----------|-------------|
-| **Agents** | Specialized role-based AI personas (e.g., Developer, Team Manager, Quality Assurance, Architect, AI Engineer, Angular Specialist) |
+| **Agents** | Specialized role-based AI personas that can be installed all together or pulled by role/agent (e.g., Developer, Team Manager, Quality Assurance, Architect, AI Engineer, Angular Specialist) |
 | **Skills** | Reusable capabilities (e.g., memory-recall, code-review, pptx-agent, drawio, portal-generation) |
+| **Skill Picker** | Helps agents choose the fewest safe skills for the task instead of loading everything |
+| **SkillOpt** | Improves existing skills through scored trials, bounded edits, validation gates, and compact best-skill artifacts |
 | **Memory System** | Persistent knowledge across sessions (SQLite + PageIndex RAG + FTS5) |
 | **Learning Tracker** | 5-level skill progression (Novice → Master) with curriculum |
 | **MCP Integration** | Model Context Protocol servers (filesystem, web, memory, thinking, drawio) |
-| **Security** | PII protection, secret scanning, guardrails |
+| **Security** | PII protection, secret scanning, prompt-injection checks, tool least privilege, and skill supply-chain review |
 
 ---
 
@@ -178,5 +198,8 @@ MIT — Use it, fork it, improve it, share it.
 2. **Follow setup:** See Quick Start above or [ONBOARDING.md](./ONBOARDING.md)
 3. **Start using:** Your agents, skills, and memory are ready immediately
 4. **Explore:** Ask Copilot "What agents are available?" or "List all skills"
+5. **Pull only what you need:** Run `node setup.js --role developer --skip-python` or `node setup.js --agent fullstack-engineer --skip-python`
+6. **Improve existing skills:** Ask "Use SkillOpt to make this skill easier to use and validate the improvement"
+7. **Create safely:** Ask "Help me build an agent in simple language" and let the Development Coach guide reuse, skill selection, security checks, and testing
 
 Questions? See [ONBOARDING.md](./ONBOARDING.md) for examples and [CONTRIBUTING.md](./CONTRIBUTING.md) to add skills.

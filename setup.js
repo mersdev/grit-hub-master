@@ -17,6 +17,8 @@
  *   node setup.js --skills           # install only skills
  *   node setup.js --mcp             # install only MCP config
  *   node setup.js --pptx            # install only PPTX agent
+ *   node setup.js --role developer  # install only one role's project agents for IDE
+ *   node setup.js --agent fullstack-engineer # install only one project agent for IDE
  */
 
 const fs = require('fs');
@@ -35,6 +37,23 @@ const dryRun = flags.has('dry-run');
 const skipPython = flags.has('skip-python');
 const skipCleanup = flags.has('skip-cleanup');
 const allFlag = flags.has('all') || flags.has('everything');
+
+function flagValue(name) {
+  const prefix = `--${name}=`;
+  const inline = args.find(a => a.startsWith(prefix));
+  if (inline) return inline.slice(prefix.length).trim();
+  const index = args.indexOf(`--${name}`);
+  if (index >= 0 && args[index + 1] && !args[index + 1].startsWith('--')) return args[index + 1].trim();
+  return '';
+}
+
+function slug(value) {
+  return String(value || '').trim().toLowerCase().replace(/^@/, '').replace(/[_\s]+/g, '-');
+}
+
+const selectedRole = slug(flagValue('role'));
+const selectedAgent = slug(flagValue('agent'));
+const roleOrAgentInstall = Boolean(selectedRole || selectedAgent);
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 function ensureDir(p) {
@@ -229,7 +248,12 @@ const CWD = process.cwd();
 const GITHUB_DIR = path.join(CWD, '.github');
 
 function installProjectAgents() {
-  console.log('\n📦 Installing Project Agents (.github/agents/)...');
+  const label = selectedAgent
+    ? `Project Agent: ${selectedAgent}`
+    : selectedRole
+      ? `Project Agents for role: ${selectedRole}`
+      : 'Project Agents';
+  console.log(`\n📦 Installing ${label} (.github/agents/)...`);
   const agentsRoot = path.join(ROOT, 'agents');
   if (!fs.existsSync(agentsRoot)) return 0;
   
@@ -237,13 +261,18 @@ function installProjectAgents() {
   ensureDir(dest);
   let count = 0;
   
-  // Copy all agents from agents/<role>/<agent-name>/<agent-name>.agent.md
+  // Copy agents from agents/<role>/<agent-name>/<agent-name>.agent.md
   for (const role of fs.readdirSync(agentsRoot, { withFileTypes: true })) {
     if (!role.isDirectory()) continue;
+    if (selectedRole && slug(role.name) !== selectedRole) continue;
     const roleDir = path.join(agentsRoot, role.name);
     
     for (const agent of fs.readdirSync(roleDir, { withFileTypes: true })) {
       if (!agent.isDirectory()) continue;
+      const agentSlug = slug(agent.name);
+      const fullSlug = slug(`${role.name}-${agent.name}`);
+      const roleSlashAgent = slug(`${role.name}/${agent.name}`);
+      if (selectedAgent && ![agentSlug, fullSlug, roleSlashAgent].includes(selectedAgent)) continue;
       const agentFile = path.join(roleDir, agent.name, `${agent.name}.agent.md`);
       if (fs.existsSync(agentFile)) {
         const destFile = path.join(dest, `${role.name}-${agent.name}.agent.md`);
@@ -252,6 +281,12 @@ function installProjectAgents() {
       }
     }
   }
+
+  if (roleOrAgentInstall && count === 0) {
+    const hint = selectedAgent ? `agent "${selectedAgent}"` : `role "${selectedRole}"`;
+    throw new Error(`No ${hint} found. Try: node setup.js --dry-run --all and check available agents.`);
+  }
+
   return count;
 }
 
@@ -339,6 +374,9 @@ async function main() {
     const specific = Object.keys(components).filter(k => flags.has(k));
     if (specific.length > 0) {
       toInstall = specific;
+    } else if (roleOrAgentInstall) {
+      // Pulling a role/agent should be simple: enough project assets for IDE use, no full global install required.
+      toInstall = ['skills', 'instructions'];
     } else if (dryRun) {
       // Dry runs should preview the full install plan instead of prompting.
       toInstall = Object.keys(components);
@@ -374,7 +412,7 @@ async function main() {
   console.log(`${'═'.repeat(55)}`);
   
   // Install project-level components for IDE Copilot
-  if (toInstall.includes('skills') || toInstall.includes('memory') || allFlag) {
+  if (toInstall.includes('skills') || toInstall.includes('memory') || allFlag || roleOrAgentInstall) {
     console.log(`\n${'═'.repeat(55)}`);
     console.log(`  Installing project-level components to .github/ (for IDE)`);
     console.log(`${'═'.repeat(55)}`);
@@ -416,7 +454,9 @@ async function main() {
     1. Reload IDE: Ctrl+Shift+P → "Developer: Reload Window"
     2. Open Copilot Chat (Ctrl+I)
     3. Ask: "What agents are available?"
-    4. Memory for VS Code agents is stored in .github/memory/
+    4. To pull only one role next time: node setup.js --role developer --skip-python
+    5. To pull only one agent: node setup.js --agent fullstack-engineer --skip-python
+    6. Memory for VS Code agents is stored in .github/memory/
 
   Memory storage:
     - VS Code / IDE Copilot: .github/memory/ in this project

@@ -79,6 +79,10 @@ For example:
 1. **Install count** — Prefer skills with 1K+ installs. Be cautious with anything under 100.
 2. **Source reputation** — Official sources (`vercel-labs`, `anthropics`, `microsoft`) are more trustworthy than unknown authors.
 3. **GitHub stars** — Check the source repository. A skill from a repo with <100 stars should be treated with skepticism.
+4. **Maintenance** — Check recent commits, open issues, and whether the skill still matches current platform behaviour.
+5. **Permissions** — Review requested tools, filesystem, network, browser, MCP, and memory access before install.
+6. **Dependencies** — Review install scripts and dependency lists for dependency risk, typosquatting, and untrusted packages.
+7. **Security** — Treat every external skill as untrusted until source, maintenance, permissions, dependencies, and security are reviewed.
 
 ### Step 5: Present Options to the User
 

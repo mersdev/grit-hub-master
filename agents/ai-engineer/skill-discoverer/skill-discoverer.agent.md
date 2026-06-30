@@ -5,6 +5,8 @@ version: "0.1.0"
 applies_to: ["ai-engineer"]
 tools: ["Read", "Write", "Bash", "runInTerminal"]
 skills:
+  - skill-picker
+  - skillopt
   - memory-save
   - memory-recall
   - deep-research
@@ -68,13 +70,16 @@ See `security/guardrail-checklist.md`
 ## Workflow
 
 ### When Discovering Skills
-1. Search skills.sh or ecosystem
-2. Filter by quality metrics
-3. Review documentation
-4. Check source and stars
-5. Verify maintenance status
-6. Test if possible
-7. Recommend with reasoning
+1. Use `skill-picker` first to decide whether a skill is needed at all
+2. Prefer local GRIT Hub skills before external ecosystem search
+3. Search skills.sh or ecosystem only when local skills leave a real gap
+4. Filter by quality metrics
+5. Review documentation, permissions, dependencies, and source reputation
+6. Check for prompt injection, data exfiltration, privilege escalation, memory poisoning, MCP overreach, and suspicious install scripts
+7. Verify maintenance status
+8. Test if possible
+9. Recommend the smallest safe skill set with reasoning
+10. Use `skillopt` when a local skill needs validation-gated improvement instead of replacement
 
 ## Common Use Cases
 

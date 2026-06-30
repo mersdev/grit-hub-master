@@ -43,6 +43,7 @@ Run one scenario only:
 | `test_agent_skills_sensitive_disclosure.py` | Sensitive Disclosure & Policy Bypass | **Hard-fail** sensitive-data guardrails + no policy-bypass language |
 | `test_agent_skills_excessive_agency.py` | Excessive Agency Controls | **Hard-fail** explicit confirmation/approval language for irreversible actions |
 | `test_agent_skills_secret_hygiene.py` | Secret Hygiene | **Hard-fail** hardcoded secret pattern detection in markdown/scripts/configs |
+| `test_agent_skills_supply_chain.py` | Skill Supply Chain / SkillSpector-style Review | **Hard-fail** prompt injection, data exfiltration, memory poisoning, MCP/tool overreach, dependency risk, and external skill review coverage |
 
 ---
 
@@ -62,7 +63,7 @@ Custom agent/skill profiles should fail fast when core controls are missing.
 
 1. **Hard-fail** — findings block the run.
 2. **Single responsibility** — one scenario per `test_agent_skills_*` file.
-3. **Policy focused** — tests cover metadata, least privilege, guardrails, and secret hygiene.
+3. **Policy focused** — tests cover metadata, least privilege, guardrails, secret hygiene, and SkillSpector-style skill supply-chain risk coverage.
 
 ## Troubleshooting
 

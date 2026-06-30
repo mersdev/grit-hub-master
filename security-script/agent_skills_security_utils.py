@@ -45,6 +45,27 @@ BYPASS_APPROVAL_PATTERNS = (
     "auto-approve everything",
 )
 
+SKILLSPECTOR_STYLE_RISK_TERMS = (
+    "prompt injection",
+    "data exfiltration",
+    "tool least privilege",
+    "least-privilege",
+    "memory poisoning",
+    "mcp overreach",
+    "dependency risk",
+    "external skill",
+    "untrusted",
+)
+
+SUPPLY_CHAIN_REVIEW_TERMS = (
+    "source",
+    "maintenance",
+    "permissions",
+    "dependencies",
+    "security",
+    "untrusted",
+)
+
 SECRET_PATTERNS = [
     re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----"),
     re.compile(r"(?i)\bapi[_-]?key\s*[:=]\s*['\"][^'\"]{8,}['\"]"),

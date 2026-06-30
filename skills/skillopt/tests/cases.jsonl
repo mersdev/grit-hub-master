@@ -1,0 +1,3 @@
+{"prompt":"Use SkillOpt to improve this skill with validation-gated edits.", "should_trigger":true, "must_contain":["SkillOpt Loop", "Validation Gate"]}
+{"prompt":"This skill is hard to use. Score it before and after improvement.", "should_trigger":true, "must_contain":["Scoring Rubric", "Edit Budget"]}
+{"prompt":"Create a birthday greeting for my friend.", "should_trigger":false}

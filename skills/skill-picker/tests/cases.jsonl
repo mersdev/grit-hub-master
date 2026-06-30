@@ -1,0 +1,3 @@
+{"prompt":"Which skill should I use to create a project status slide?", "should_trigger":true, "must_contain":["Recommended skill set", "Safety note"]}
+{"prompt":"Help this agent choose the fewest safe skills for this task.", "should_trigger":true, "must_contain":["Decision Ladder"]}
+{"prompt":"Translate this sentence into Chinese.", "should_trigger":false}

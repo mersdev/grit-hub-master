@@ -6,6 +6,22 @@ Get up and running with GRIT Hub framework. Choose your platform below.
 
 ## Choose Your Platform
 
+Non-technical starting point:
+
+```text
+I want an AI helper for my team. Ask me simple questions and recommend whether to reuse, improve, or create an agent.
+```
+
+Use the Development Coach when you do not know the right agent, skill, folder, or setup command. It will translate your work problem into simple choices.
+
+Already know your role? Pull only what you need:
+
+```powershell
+node setup.js --role developer --skip-python
+node setup.js --role quality-assurance --skip-python
+node setup.js --agent fullstack-engineer --skip-python
+```
+
 - **[GitHub Copilot CLI](#github-copilot-cli-setup)** — Command-line interface (4 minutes)
 - **[IDE Copilot (VS Code/JetBrains)](#ide-copilot-setup)** — Integrated development environment (2 minutes)
 
@@ -102,7 +118,9 @@ Init & wire my new Agent Alex and Implement Learning Path, Memory System, Skills
 **Core Systems (~/.copilot/):**
 - ✅ **Learning Path** — 5-level skill progression tracker
 - ✅ **Memory System** — SQLite + PageIndex + FTS5 full-text search
-- ✅ **Skills Library** — 52 reusable capabilities
+- ✅ **Skills Library** — reusable capabilities for common work
+- ✅ **Skill Picker** — chooses the fewest safe skills for each task
+- ✅ **SkillOpt** — improves existing skills through scored trials, bounded edits, validation gates, and compact best-skill artifacts
 - ✅ **MCP Servers** — 5 Model Context Protocol integrations
 - ✅ **PPTX Agent** — DHL-branded presentation generation
 
@@ -144,6 +162,12 @@ What's my current skill level in Python?
 
 # Test Skills
 List all available skills
+
+# Test Skill Picker
+Which skill should I use to create a project status slide?
+
+# Test SkillOpt
+Use SkillOpt to improve a skill that is hard for non-technical users and show the validation gate.
 
 # Test Agents
 Show me all available agents organized by role
@@ -222,7 +246,7 @@ Save today's key decisions and learnings to memory
 - Developer, Team Manager, Quality Assurance, Architect, Project Manager, Consultant, Support, AI Engineer, Agent Builder, Everyone, and more
 
 ✅ **Skills**
-- Memory recall & save, Learning tracker, Code review, Deep research, PPTX presentations, draw.io diagrams, portal generation, and more
+- Memory recall & save, Learning tracker, Code review, Deep research, PPTX presentations, draw.io diagrams, portal generation, skill picking, and more
 
 ✅ **Persistent Memory System**
 - Save facts, events, workflows across sessions
@@ -313,6 +337,8 @@ npm install
 
 **Project Installation (.github/):**
 - ✅ Specialized agents (Developer, Team Manager, Quality Assurance, Architect, Consultant, Support, AI Engineer, Project Manager, Agent Builder, Everyone, and more)
+- ✅ Optional role pull: `node setup.js --role developer --skip-python`
+- ✅ Optional single-agent pull: `node setup.js --agent fullstack-engineer --skip-python`
 - ✅ Skills (memory-recall, code-review, pptx-agent, drawio, portal-generation, and more)
 - ✅ Security guardrails
 - ✅ Instructions and AGENTS.md
@@ -444,8 +470,10 @@ What should I learn next?
    - Learning: See `learning/README.md` for skill progression tracking
    - MCP: See `mcp/README.md` for Model Context Protocol integration
 4. **Browse agents:** Ask: `Show me all available agents organized by role` or check `instructions/AGENTS.md`
-5. **Generate portal:** Try the portal generator: `@portal-generator create a portal for my agents`
-6. **Contribute:** See [CONTRIBUTING.md](./CONTRIBUTING.md) to add your own skills or agents
+5. **Pull a role only:** Run `node setup.js --role developer --skip-python`
+6. **Pull one agent only:** Run `node setup.js --agent fullstack-engineer --skip-python`
+7. **Generate portal:** Try the portal generator: `@portal-generator create a portal for my agents`
+8. **Contribute:** See [CONTRIBUTING.md](./CONTRIBUTING.md) to add your own skills or agents
 
 ---
 
