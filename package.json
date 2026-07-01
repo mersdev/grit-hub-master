@@ -1,13 +1,14 @@
 {
   "name": "grit-hub",
   "version": "1.0.0",
-  "description": "Custom Copilot agent repo with shared skills, instructions, and admin validation.",
+  "description": "Custom Copilot agent repo with shared skills and instructions.",
   "main": "scripts/setup.js",
   "bin": {
     "copilot-setup": "scripts/setup.js"
   },
   "scripts": {
     "agent:remove": "node scripts/remove-agent.js",
+    "copilot:memory:clear": "node scripts/cleanup-copilot-memory.js",
     "agent:sync": "node scripts/cleanup.js && node scripts/setup.js --all --skip-python --skip-cleanup",
     "postinstall": "node scripts/setup.js --all",
     "setup": "node scripts/setup.js",

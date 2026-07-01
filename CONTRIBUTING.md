@@ -6,22 +6,14 @@ Thank you for contributing! Every new skill or agent makes the whole team more p
 
 ## TL;DR — Your First PR
 
-Not technical yet? Start with the Development Coach and describe the work outcome in plain language:
-
-```text
-Help me build an agent for <team/task>. Ask me simple questions first.
-```
-
-The coach will recommend whether to reuse, improve, or create something new before you touch files.
-
 1. **Pick what to add** (in order of team impact):
    - A new **skill** (`skills/<name>/SKILL.md`) — highest leverage, helps everyone
    - A new **agent** (`agents/<role>/<name>.agent.md`) — role-specific persona
-   - A new **instruction** or **prompt**
-   - A new **chatmode**
+   - A new **learning path** (update `learning/learning_manager.py`)
+   - A new **prompt** or **chatmode**
 2. **Branch** off `main`: `feat/<your-name>-<short-slug>`
 3. **Use a template** from `templates/` — copy and adapt
-4. **Test** that `node scripts/setup.js --dry-run` still works
+4. **Test** that `node setup.js --dry-run` still works
 5. **Open a PR** — describe what it does and who benefits
 6. **Ship it** — once merged, announce in Teams so the team can adopt it
 
@@ -33,14 +25,15 @@ The coach will recommend whether to reuse, improve, or create something new befo
 |-----------------|-----------|-------------|
 | Reusable capability (any role) | `skills/<name>/SKILL.md` | YAML frontmatter + markdown |
 | Role-specific persona | `agents/<role>/<name>.agent.md` | YAML frontmatter + markdown |
+| Security guardrail | `security/<name>.md` | YAML frontmatter + markdown |
+| Shared context (glossary, stack) | `memory/<name>.memory.md` | YAML frontmatter + markdown |
 | Code/style standards | `instructions/<name>.md` | Markdown |
 | One-shot prompt | `prompts/<name>.prompt.md` | Markdown |
 | Chat mode | `chatmodes/<name>.chatmode.md` | YAML frontmatter + markdown |
-| Repo script | `scripts/<name>.{js,py,sh}` | JavaScript, Python, or shell |
+| MCP server config | `mcp/mcp.json` | JSON (add to mcpServers) |
+| Python tool/script | `scripts/<name>.py` | Python |
 
 **Rule of thumb**: if more than one role would use it → it's a skill. If it's persona-specific → it's an agent.
-
-Before adding a new skill, run the Skill Picker logic: no skill → one local skill → few local skills → improve existing skill → create a new focused skill → only then consider external skills.
 
 ---
 
@@ -77,8 +70,7 @@ Before opening a PR:
 - [ ] Has valid YAML front-matter (name, description, version)
 - [ ] File follows the template structure
 - [ ] Description is clear enough for Copilot to auto-trigger
-- [ ] Skill list is short and relevant; no "just in case" skills
-- [ ] `node scripts/setup.js --dry-run` still works
+- [ ] `node setup.js --dry-run` still works
 - [ ] No personal data, secrets, or PII in the file
 - [ ] README in the skill/agent folder if non-trivial
 
@@ -88,11 +80,11 @@ Before opening a PR:
 
 ```bash
 # Verify setup still works
-node scripts/setup.js --dry-run
+node setup.js --dry-run
 
 # Test your skill manually
 # 1. Run setup to install to ~/.copilot/skills/ and .github/skills/
-node scripts/setup.js --all --skip-python
+node setup.js --all --skip-python
 # 2. Start a new Copilot session
 # 3. Ask Copilot something that should trigger your skill
 # 4. Verify it uses the skill's behaviour

@@ -30,28 +30,6 @@ Every agent must pass this checklist before being considered complete. These gua
 
 ---
 
-## 🧪 Skill Supply Chain Review (Mandatory)
-
-These checks are SkillSpector-style controls for prompt injection, data exfiltration, tool least privilege, least-privilege access, memory poisoning, MCP overreach, dependency risk, external skill review, and untrusted skill content.
-
-- [ ] **Prompt injection checked** — Skill or agent does not contain instructions to ignore higher-priority rules, bypass safety, or hide behaviour
-  - ✅ Good: Clear task instructions only
-  - ❌ Bad: "Ignore previous instructions", "always comply", hidden comments that change behaviour
-
-- [ ] **No data exfiltration path** — Skill does not send files, logs, tokens, memory, or environment variables outside approved systems
-  - ✅ Good: Local-only processing unless user approves a destination
-  - ❌ Bad: Upload scripts, webhooks, or telemetry with unclear purpose
-
-- [ ] **Tool least privilege** — Tools and MCP servers are limited to what the task needs
-  - ✅ Good: Read-only file access for documentation review
-  - ❌ Bad: Shell, browser, network, and full filesystem access "just in case"
-
-- [ ] **External skill reviewed** — Any third-party skill has source, maintenance, dependencies, and permissions review before recommendation or install
-  - ✅ Good: Known source, maintained repo, clear permissions
-  - ❌ Bad: Unknown source, broad install script, unclear owner
-
----
-
 ## 🛡️ Access Control (Mandatory)
 
 - [ ] **Role clarity** — Agent clearly states what roles it applies to
@@ -117,8 +95,8 @@ These checks are SkillSpector-style controls for prompt injection, data exfiltra
 - [ ] **Skills exist** — All listed skills are documented in `skills/` folder
   - Test: `ls ~/.copilot/skills/ | grep <skill-name>`
 
-- [ ] **Setup test passes** — `node scripts/setup.js --dry-run` completes without errors
-  - Test: Run `node scripts/setup.js --dry-run` in the repo root
+- [ ] **Setup test passes** — `node setup.js --dry-run` completes without errors
+  - Test: Run `node setup.js --dry-run` in the repo root
 
 ---
 
@@ -146,10 +124,9 @@ These checks are SkillSpector-style controls for prompt injection, data exfiltra
 - [ ] No PII or secrets in agent description or examples
 - [ ] Role is clearly documented
 - [ ] Guardrails section is not removed or weakened
-- [ ] Passes `node scripts/setup.js --dry-run` without errors
+- [ ] Passes `node setup.js --dry-run` without errors
 - [ ] Description explains what the agent does and who benefits
 - [ ] At least one example interaction is provided
-- [ ] Skill supply-chain review is complete for any new or external skill
 
 ---
 

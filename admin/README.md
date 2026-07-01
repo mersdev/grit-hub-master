@@ -2,6 +2,8 @@
 
 Use this when you need to confirm that GRIT Hub still routes to the right agents and that custom agents are visible in the expected locations.
 
+For the full prompt pack, see [validation-prompts.md](./validation-prompts.md).
+
 ## What To Check
 
 - Workspace agents live in `.github/agents/*.agent.md`

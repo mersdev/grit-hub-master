@@ -370,7 +370,7 @@ async function main() {
     - Workspace agents: .github/agents/*.agent.md
     - User/global custom agents: ~/.copilot/agents/*.agent.md
 
-  Docs: see README.md, ONBOARDING.md, and admin/README.md.
+  Docs: see README.md and ONBOARDING.md.
 `);
 }
 
